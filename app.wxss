@@ -1,0 +1,34 @@
+Page {
+    background-color: #f0eff5;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.clear {
+    overflow: hidden;
+}
+
+
+/*=========================== 1px分割线 */
+
+#oneLine {
+    width: 100%;
+    height: 1px;
+    background: #e5e5e5;
+}
+
+button[type="primary"] {
+    color: #FFFFFF;
+    background-color: #01ae85;
+}
+
+.button-hover[type="primary"] {
+    color: #FFFFFF;
+    background-color: #01ae85;
+}

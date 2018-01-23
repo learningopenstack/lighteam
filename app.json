@@ -1,0 +1,47 @@
+{
+    "pages": [
+        "pages/me/me",
+        "pages/index/index",
+        "pages/myorder/myorder"
+
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#01ae85",
+        "navigationBarTitleText": "台球帝国",
+        "navigationBarTextStyle": "white",
+        "enablePullDownRefresh": false
+    },
+    "tabBar": {
+        "color": "#888",
+        "selectedColor": "#01ae85",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [{
+                "pagePath": "pages/index/index",
+                "iconPath": "image/homepage.png",
+                "selectedIconPath": "image/homepage_select.png",
+                "text": "主页"
+            },
+            {
+                "pagePath": "pages/myorder/myorder",
+                "iconPath": "image/dingdan.png",
+                "selectedIconPath": "image/dingdan_select.png",
+                "text": "社区"
+            },
+            {
+                "pagePath": "pages/me/me",
+                "iconPath": "image/me.png",
+                "selectedIconPath": "image/me_select.png",
+                "text": "我的"
+            }
+        ]
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "connectSocket": 10000,
+        "uploadFile": 10000,
+        "downloadFile": 10000
+    },
+    "debug": true
+}
