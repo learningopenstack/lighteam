@@ -1,10 +1,10 @@
 <view class="wrapper">
     <view class="userInfo">
         <view class="userimg">
-            <image src="/image/1.png"></image>
+            <image src="{{userInfo.avatarUrl}}"></image>
         </view>
-        <text class="username">昵称</text>
-        <text class="usertext" style="display:block">你若安好，便是晴天</text>
+<text class="username">{{userInfo.nickName}}</text>
+        <text class="usertext" style="display:block">{{word}}</text>
     </view>
     <!-- 用户操作 -->
     <view class="user-action">
@@ -19,12 +19,6 @@
         <view class="fankui" data-title="积分" bindtap="bindAdvise">
             <view class="txt left">积分</view>
             <view class="fankui-info right">
-                <image class="arrows" src="/image/right.png"></image>
-            </view>
-        </view>
-        <view class="address" data-title="我的视频" bindtap="address">
-            <view class="txt left">我的视频</view>
-            <view class="address-info right">
                 <image class="arrows" src="/image/right.png"></image>
             </view>
         </view>

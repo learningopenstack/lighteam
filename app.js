@@ -3,14 +3,16 @@ var wxApi = require('utils/wxApi')
 var wxRequest = require('utils/wxRequest')
 App({
     data: {
-
+        userInfo: null
     },
     config: config, //应用配置信息
     wxRequest: wxRequest,
     wxApi: wxApi,
     globalData: { //全局数据
-        userInfo: null
+        userInfo: null,
+        login:null
     },
+    
     bindToIndex: function() { //返回首页
         wx.reLaunch({
             url: '/pages/index/index',
@@ -19,82 +21,61 @@ App({
     /**
      * 用户登录
      */
+    
     login: function(fn) {
         var that = this;
         var code, session_id;
         var wxLogin = wxApi.wxLogin()
         wxLogin().then(res => {
+            
+            console.log(res)
             //1.获取code
             console.log('1.获取code')
-            console.log(res.code)
             code = res.code;
+            console.log(code);
+            wx.getUserInfo({
+                success: function (res) {
+                    console.log(res.userInfo);
+                    that.globalData.userInfo=res.userInfo;
+                }, fail(res) {
+                    console.log(res, '获取用户信息失败')
+                }
+            })
             var url = config.getSessionIdUrl;
             var params = {
                     code: res.code,
+                    imgurl: that.globalData.avatarUrl,
+                    nickname: that.globalData.nickName
                 }
-                //2.获取sessionId
+                //2.获取word
             return wxRequest.postRequest(url, params)
         }).
         then(res => {
-            console.log('2.获取sessionId成功')
-            console.log(res)
-            session_id = res.data.session_id;
-            //3.获取用户信息
-            var wxGetUserInfo = wxApi.wxGetUserInfo()
-            return wxGetUserInfo()
-        }).
-        then(res => {
-            console.log('3.获取用户信息', session_id)
-            console.log(res)
-            var url = config.getNameAndPwd;
-            var data = {
-                session_id: session_id,
-                encryptedData: res.encryptedData,
-                iv: res.iv
-            };
-            //4.获取用户名和密码
-            return wxRequest.postRequest(url, data)
-        }).
-        then(res => {
-            console.log('4.获取用户名和密码')
-            console.log(res)
-            var url = config.getUserInfoUrl;
-            var data = {
-                userid: res.data.userid,
-                pwdtemp: res.data.pwdtemp,
 
-            };
-            //5.获取台球8用户信息
-            return wxRequest.postRequest(url, data)
-        }).
-        then(res => {
-                console.log('5.获取台球八用户信息成功')
-                console.log(res)
-                that.globalData.userInfo = res.data;
-                if (fn) {
-                    fn(res.data);
-                }
-            })
-            .catch(res => {
-                console.log(res)
-            })
-            .finally(function(res) {
-                console.log('finally~')
-            })
+            console.log(res);
+            that.globalData.login=res.data.data
+           
+        })
+        .catch(res => {
+            console.log(res)
+            
+        })
+        .finally(function(res) {
+            console.log('finally~')
+        })
     },
-
     /**
      * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
      */
     onLaunch: function() {
-
+        
     },
 
     /**
      * 当小程序启动，或从后台进入前台显示，会触发 onShow
      */
     onShow: function(options) {
-
+        this.login();
     },
 
     /**

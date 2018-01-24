@@ -2,21 +2,27 @@
 var app = getApp()
 Page({
     data: {
-        userInfo: {},
+        userInfo:{},
+        word:'',
     },
     onLoad: function(options) {
         // 生命周期函数--监听页面加载
-
+        //获取code 
+        console.log(app.globalData) 
     },
-
+    
     onReady: function() {
         // 生命周期函数--监听页面初次渲染完成
 
     },
     onShow: function() {
         // 生命周期函数--监听页面显示
-
+        this.setData({
+            userInfo:app.globalData.userInfo,
+            word: app.globalData.login.Words
+        })
     },
+    
     onHide: function() {
         // 生命周期函数--监听页面隐藏
 

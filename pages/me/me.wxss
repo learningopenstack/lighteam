@@ -26,24 +26,25 @@ page {
 }
 
 .userInfo {
-    background: #01ae85;
+    background:url(https://cephcp.ztgame.com.cn/lighteam/login.png) repeat-x;
     height: 180rpx;
     padding: 30rpx 0 30rpx 30rpx;
 }
 
 .userimg {
-    width: 116rpx;
-    height: 116rpx;
+    width: 130rpx;
+    height: 130rpx;
     border-radius: 50%;
     border: 1px solid #e5e5e5;
-    margin-right: 10rpx;
+    /* margin-right: 30rpx; */
+    margin-top: 20rpx;
     overflow: hidden;
     float: left
 }
 
 .userimg image {
-    width: 116rpx;
-    height: 116rpx;
+    width: 130rpx;
+    height: 130rpx;
     display: inline-block;
     border-radius: 50%;
     overflow: hidden;
