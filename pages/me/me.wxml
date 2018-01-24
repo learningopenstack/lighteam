@@ -1,35 +1,53 @@
 <view class="wrapper">
-    <view class="userInfo">
+    <!-- <view class="userInfo">
         <view class="userimg">
             <image src="{{userInfo.avatarUrl}}"></image>
         </view>
-<text class="username">{{userInfo.nickName}}</text>
+        <text class="username">{{userInfo.nickName}}</text>
         <text class="usertext" style="display:block">{{word}}</text>
+    </view> -->
+    <view class="login">
+        <image class="login_header" src="/image/login_header.png"></image>
+        <view class="userimg">
+            <image src="{{userInfo.avatarUrl}}"></image>
+        </view>
+        <view class="login-user">
+            <text class="username">{{userInfo.nickName}}</text>
+            <text class="usertext" style="display:block">{{word}}</text>
+        </view>
     </view>
     <!-- 用户操作 -->
     <view class="user-action">
         <!-- 成员管理 -->
         <view class="guanli" data-title="系统通知" data-atype="6" bindtap="bindToMembers">
-            <view class="txt left">系统通知</view>
+            <view class="txt left">
+                <image class="notice" src="/image/notice.png"></image>
+                系统通知
+            </view>
             <view class="guanli-info right">
                 <image class="arrows" src="/image/right.png"></image>
             </view>
         </view>
         <!--用户反馈  -->
         <view class="fankui" data-title="积分" bindtap="bindAdvise">
-            <view class="txt left">积分</view>
+            <view class="txt left">
+                <image class="notice" src="/image/score.png"></image>
+                积分
+            </view>
             <view class="fankui-info right">
                 <image class="arrows" src="/image/right.png"></image>
             </view>
         </view>
         <view class="address" data-title="我的足迹" bindtap="CommodityOrder">
-            <view class="txt left">我的足迹</view>
+            <view class="txt left">
+                <image class="notice" src="/image/zuji.png"></image>我的足迹</view>
             <view class="address-info right">
                 <image class="arrows" src="/image/right.png"></image>
             </view>
         </view>
         <view class="address" data-title="我的作品" bindtap="CommodityOrder">
-            <view class="txt left">我的作品</view>
+            <view class="txt left">
+                <image class="notice" src="/image/article.png"></image>我的作品</view>
             <view class="address-info right">
                 <image class="arrows" src="/image/right.png"></image>
             </view>
