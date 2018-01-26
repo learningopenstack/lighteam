@@ -1,1 +1,88 @@
-<view>首页</view>
+<view class="container">
+    <view class="search wrap">
+        <view class="search__icon search__active" style="width:40rpx;">
+            <icon type="search" size="13" color="#888" style="float:left;margin-right:20rpx;" bindtap="bindSearch" class='icon'></icon>
+        </view>
+        <input class='ipt' value="{{value}}" class="ipt" bindinput="bindconfirm" confirm-type="done" bindblur="bindOver" placeholder="请输入搜索内容" />
+    </view>
+    <view class="wrap swiper">
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+            <block wx:for="{{imgUrls}}">
+                <swiper-item>
+                    <image src="{{item}}" mode="aspectFill" lazy-load='true' class="slide-image" style="width:750rpx;" />
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <!-- <swiper class="wrap swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{good.imgs}}">
+            <swiper-item wx:if='{{item && item !="undefined"}}'>
+                <image src="{{item}}" data-url="{{item}}" wx:key="unique" mode="aspectFill" data-index="{{index}}" bindtap="previewImage" class="slide-image" width="355" height="150" />
+            </swiper-item>
+        </block>
+    </swiper> -->
+    <view class="theme">
+        热播视频
+    </view>
+    <view class="box">
+        <view class="video-item">
+            <image class="listImg" mode="aspectFill" lazy-load='true' src="/image/video.jpg" />
+            <view class="list-content">
+                <view class="list-content-one">我的青春遇见你</view>
+                <view>我滴天呐！</view>
+            </view>
+        </view>
+        <view class="video-item">
+            <image class="listImg" mode="aspectFill" lazy-load='true' src="/image/video.jpg" />
+            <view class="list-content">
+                <view class="list-content-one">我的青春遇见你</view>
+                <view>我滴天呐！</view>
+            </view>
+        </view>
+        <view class="video-item">
+            <image class="listImg" mode="aspectFill" lazy-load='true' src="/image/video.jpg" />
+            <view class="list-content">
+                <view class="list-content-one">我的青春遇见你</view>
+                <view>我滴天呐！</view>
+            </view>
+        </view>
+        <view class="video-item">
+            <image class="listImg" mode="aspectFill" lazy-load='true' src="/image/video.jpg" />
+            <view class="list-content">
+                <view class="list-content-one">我的青春遇见你</view>
+                <view>我滴天呐！</view>
+            </view>
+        </view>
+        <button type="default" class="button" loading="{{loading}}" bindtap=" search " disabled='{{disabled}}'>换一批试试</button>
+    </view>
+    <view class="theme">
+        热门专题
+    </view>
+    <view class="box">
+        <view class="video-item">
+            <view class="list-content">
+                <view class="list-content-one">我的青春遇见你</view>
+            </view>
+            <image class="listImg" mode="aspectFill" lazy-load='true' src="/image/video.jpg" />
+        </view>
+        <view class="video-item">
+            <view class="list-content">
+                <view class="list-content-one">我的青春遇见你</view>
+            </view>
+            <image class="listImg" mode="aspectFill" lazy-load='true' src="/image/video.jpg" />
+        </view>
+        <view class="video-item">
+            <view class="list-content">
+                <view class="list-content-one">我的青春遇见你</view>
+            </view>
+            <image class="listImg" mode="aspectFill" lazy-load='true' src="/image/video.jpg" />
+        </view>
+        <view class="video-item">
+            <view class="list-content">
+                <view class="list-content-one">我的青春遇见你</view>
+            </view>
+            <image class="listImg" mode="aspectFill" lazy-load='true' src="/image/video.jpg" />
+        </view>
+        <button type="default" class="button" loading="{{loading}}" bindtap=" search " disabled='{{disabled}}'>换一批试试</button>
+    </view>
+</view>
