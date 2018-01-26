@@ -1,7 +1,38 @@
 //获取应用实例
 var app = getApp()
 Page({
-    data: {},
+    data: {
+        imgUrls: [
+            'https://cephcp.ztgame.com.cn/lighteam/roll1.jpeg',
+            'https://cephcp.ztgame.com.cn/lighteam/roll2.jpeg',
+            'https://cephcp.ztgame.com.cn/lighteam/roll3.jpeg',
+            'https://cephcp.ztgame.com.cn/lighteam/roll4.jpeg',
+        ],
+        indicatorDots: true,
+        autoplay: true,
+        interval: 5000,
+        duration: 1000,
+    },
+    changeIndicatorDots: function(e) {
+        this.setData({
+            indicatorDots: !this.data.indicatorDots
+        })
+    },
+    changeAutoplay: function(e) {
+        this.setData({
+            autoplay: !this.data.autoplay
+        })
+    },
+    intervalChange: function(e) {
+        this.setData({
+            interval: e.detail.value
+        })
+    },
+    durationChange: function(e) {
+        this.setData({
+            duration: e.detail.value
+        })
+    },
     onLoad: function(options) {
         // 生命周期函数--监听页面加载
 
