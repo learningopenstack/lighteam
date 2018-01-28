@@ -54,3 +54,190 @@
 	根据https//{domain}/lightema/pic/{Pic} 拼接得到图片url地址；循环出来展示即可；
 
 ### 热门视频 ###
+
+	  url: 'https://{domain}/lighteam/hotvideo',
+	  method: "GET",
+	  header: {
+	  	"Content-Type": "application/x-www-form-urlencoded"
+	  },
+	
+	请求参数：
+		无
+	返回值：（对象数组）
+	    - Id     视频id
+	    - Userid 上传该视频的用户id【id为0则为管理员上传】
+	    - Topicid 该视频所属主题id
+	    - Topid   该视频所属分类id 【分类为一级，主题为二级，分类包含主题】
+	    - Title  视频标题
+	    - Name   视频名称
+	    - Pic    视频首页图片名称
+	    - Zan    视频“赞”个数
+	    - View   视频观看次数
+	    - Create 视频创建时间
+
+	根据https//{domain}/lightema/pic/{Pic} 拼接得到图片url地址；循环出来展示即可；
+
+### 用户点击某一热门视频 action ###
+
+	根据“热门视频”中携带的信息，跳转到视频播放页面，并做相应的展示；
+	视频url地址： https://{domain}/lighteam/video/{Name} 
+	与此同时，发送请求获取该视频的评论；
+	### 详细见如下： 视频播放页面 ###
+
+	
+
+### 热门视频 “试一试” ###
+
+	  url: 'https://{domain}/lighteam/tryhotvideo',
+	  method: "GET",
+	  header: {
+	  	"Content-Type": "application/x-www-form-urlencoded"
+	  },
+	
+	请求参数：
+		无
+	返回值：（对象数组）
+	    - Id     视频id
+	    - Userid 上传该视频的用户id【id为0则为管理员上传】
+	    - Topicid 该视频所属主题id
+	    - Topid   该视频所属分类id 【分类为一级，主题为二级，分类包含主题】
+	    - Title  视频标题
+	    - Name   视频名称
+	    - Pic    视频首页图片名称
+	    - Zan    视频“赞”个数
+	    - View   视频观看次数
+	    - Create 视频创建时间
+
+	根据https//{domain}/lightema/pic/{Pic} 拼接得到图片url地址；循环出来展示即可；
+
+### 热门主题 ###
+
+	  url: 'https://{domain}/lighteam/hottopic',
+	  method: "GET",
+	  header: {
+	  	"Content-Type": "application/x-www-form-urlencoded"
+	  },
+	
+	请求参数：
+		无
+	返回值：（对象数组）
+	    - Id     主题id
+	    - Name   主题名字
+	    - Topid  主题所属大类id（主题是属于某个大类的）
+	    - Count  暂时保留
+	    - Pic    主题展示的图片
+	    - Assign 管理员是否指定显示该主题【0为不指定，1为指定】
+	    
+	根据https//{domain}/lightema/pic/{Pic} 拼接得到图片url地址；循环出来展示即可；
+
+## 用户点击某一热门主题 action ###
+
+	根据“热门主题”中携带的信息，跳转到主题展示页面；展示主题名称，简介等信息
+	与此同时，发送请求获取该主题下的所有视频列表；
+
+	  url: 'https://{domain}/lighteam/topicinfo',
+	  method: "GET",
+	  data： {Topicid}
+	  header: {
+	  	"Content-Type": "application/x-www-form-urlencoded"
+	  },
+	
+	请求参数：
+		主题id
+	返回值：（对象数组）
+	    - Id     视频id
+	    - Userid 上传该视频的用户id【id为0则为管理员上传】
+	    - Topicid 该视频所属主题id 【该Topicid应该等于传入的主题id值】
+	    - Topid   该视频所属分类id 【分类为一级，主题为二级，分类包含主题】
+	    - Title  视频标题
+	    - Name   视频名称
+	    - Pic    视频首页图片名称
+	    - Zan    视频“赞”个数
+	    - View   视频观看次数
+	    - Create 视频创建时间
+
+	根据https//{domain}/lightema/pic/{Pic} 拼接得到图片url地址；循环出来展示即可；
+	此处样式同需求文档中“社区”页面
+
+### 热门主题 试一试###
+
+	  url: 'https://{domain}/lighteam/tryhottopic',
+	  method: "GET",
+	  header: {
+	  	"Content-Type": "application/x-www-form-urlencoded"
+	  },
+	
+	请求参数：
+		无
+	返回值：（对象数组）
+	    - Id     主题id
+	    - Name   主题名字
+	    - Topid  主题所属大类id（主题是属于某个大类的）
+	    - Count  暂时保留
+	    - Pic    主题展示的图片
+	    - Assign 管理员是否指定显示该主题【0为不指定，1为指定】
+	    
+	根据https//{domain}/lightema/pic/{Pic} 拼接得到图片url地址；循环出来展示即可；
+
+### 视频播放 页面 ###
+
+	根据上级跳转自带的视频信息；并做相应的展示，展示内容如下；
+	- 视频名称
+	- 视频播放  //用户点击支持全屏播放
+	- 该视频的观看数量，点赞 数量
+	- 评论总数
+	- 评论框
+	- 用户评论展示
+	
+	视频url地址： https://{domain}/lighteam/video/{Name} 
+	与此同时，发送请求获取该视频的评论；
+
+【以下暂定，可协商】
+
+评论需要做分页处理（此处涉及到用户信息，请求必须添加用户id， key），请求分两次：
+
+第一次请求
+  
+	url: 'https://{domain}/lighteam/videocomment',
+	method: "GET",
+	data：{视频id}
+	header: {
+		"Content-Type": "application/x-www-form-urlencoded"
+	},
+	
+	请求参数：
+		- userid  用户id
+		- key     用户key
+		- videoid  视频id
+		- start    评论开始 比如从第一条开始 start=1
+		- count    此处获取的评论数量 数量为5， count=5； 返回为1，2，3，4，5条评论
+		 
+	返回值：（对象）
+	    - all    该视频的评论总条数，用于分页，展示N个下一页；
+	    - 评论数组：
+	     - 评论者的昵称：
+	     - 评论者头像url
+	     - 评论内容
+
+第二次请求： 【根据第一次请求中的评论总数来确定是否需要第二次请求】
+	    
+	url: 'https://{domain}/lighteam/videocomment2',
+	method: "GET",
+	data：{视频id}
+	header: {
+		"Content-Type": "application/x-www-form-urlencoded"
+	},
+	
+	请求参数：
+		- videoid  视频id
+		- start    评论开始 比如从第一条开始 start=8
+		- count    此处获取的评论数量 数量为5， count=5； 返回为8，9，10，11，12条评论
+				   若只有9，10，11条则只返回3条；
+		 
+	返回值：（对象数组）
+	     - 评论者的昵称：
+	     - 评论者头像url
+	     - 评论内容
+
+
+
