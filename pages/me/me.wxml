@@ -1,11 +1,4 @@
 <view class="wrapper">
-    <!-- <view class="userInfo">
-        <view class="userimg">
-            <image src="{{userInfo.avatarUrl}}"></image>
-        </view>
-        <text class="username">{{userInfo.nickName}}</text>
-        <text class="usertext" style="display:block">{{word}}</text>
-    </view> -->
     <view class="login">
         <image class="login_header" src="/image/login_header.png"></image>
         <view class="userimg">

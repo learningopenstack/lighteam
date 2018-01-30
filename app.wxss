@@ -38,3 +38,11 @@ button[type="primary"] {
     color: #FFFFFF;
     background-color: #01ae85;
 }
+
+.load-more {
+    text-align: center;
+    color: #b6b6b6;
+    font-size: 30rpx;
+    height: 70rpx;
+    line-height: 88rpx;
+}

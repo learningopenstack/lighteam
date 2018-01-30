@@ -10,9 +10,9 @@ App({
     wxApi: wxApi,
     globalData: { //全局数据
         userInfo: null,
-        login:null
+        login: null
     },
-    
+
     bindToIndex: function() { //返回首页
         wx.reLaunch({
             url: '/pages/index/index',
@@ -21,54 +21,83 @@ App({
     /**
      * 用户登录
      */
-    
+
     login: function(fn) {
         var that = this;
-        var code, session_id;
+        var code;
         var wxLogin = wxApi.wxLogin()
         wxLogin().then(res => {
-            
             console.log(res)
-            //1.获取code
+                //1.获取code
             console.log('1.获取code')
             code = res.code;
             console.log(code);
-            wx.getUserInfo({
-                success: function (res) {
-                    console.log(res.userInfo);
-                    that.globalData.userInfo=res.userInfo;
-                }, fail(res) {
-                    console.log(res, '获取用户信息失败')
-                }
-            })
-            var url = config.getSessionIdUrl;
-            var params = {
-                    code: res.code,
-                    imgurl: that.globalData.avatarUrl,
-                    nickname: that.globalData.nickName
-                }
-                //2.获取word
-            return wxRequest.postRequest(url, params)
         }).
         then(res => {
+                //2.获取用户信息
+                var wxGetUserInfo = wxApi.wxGetUserInfo()
+                return wxGetUserInfo()
 
-            console.log(res);
-            that.globalData.login=res.data.data
-           
+            })
+            .then(res => {
+                console.log('2.用户信息', res.userInfo);
+                that.globalData.userInfo = res.userInfo;
+                var url = config.getLoginUrl;
+                var params = {
+                    code: code,
+                    imgurl: res.userInfo.avatarUrl,
+                    nickname: res.userInfo.nickName
+                }
+
+                return wxRequest.postRequest(url, params)
+
+            })
+            .then(res => {
+                //3.获取word
+                that.globalData.login = res.data.data
+            })
+            .catch(res => {
+                console.log(res)
+
+            })
+            .finally(function(res) {
+                console.log('finally~')
+            })
+    },
+    upLoadImg(imgUrl, success, fail, uploadtask) {
+        var that = this;
+        var session_id = wx.getStorageSync('PHPSESSID');
+        const uploadTask = wx.uploadFile({
+            url: that.data.domain + 'user/upLoadImg',
+            header: { 'Accept': 'application/vnd.pinming.v1.0+json', 'content-type': 'multipart/form-data', 'Cookie': 'PHPSESSID=' + session_id },
+            filePath: imgUrl,
+            name: 'file',
+            success: function(res) {
+                console.log('成功', res)
+                var data = JSON.parse(res.data);
+                if (data.code == 0) {
+                    success(data);
+                } else {
+                    fail(data);
+                }
+            },
+            fail: function() {
+                console.log('接口调用失败！')
+                app.showTip("上传图片失败");
+            }
         })
-        .catch(res => {
-            console.log(res)
-            
-        })
-        .finally(function(res) {
-            console.log('finally~')
+        uploadTask.onProgressUpdate((res) => {
+            console.log('上传进度', res.progress)
+            var data = JSON.parse(res.progress);
+            uploadtask(data);
+
         })
     },
     /**
      * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
      */
     onLaunch: function() {
-        
+
     },
 
     /**

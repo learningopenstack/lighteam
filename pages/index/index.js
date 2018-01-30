@@ -2,16 +2,168 @@
 var app = getApp()
 Page({
     data: {
+        showBox: true,
         imgUrls: [
             'https://cephcp.ztgame.com.cn/lighteam/roll1.jpeg',
             'https://cephcp.ztgame.com.cn/lighteam/roll2.jpeg',
             'https://cephcp.ztgame.com.cn/lighteam/roll3.jpeg',
             'https://cephcp.ztgame.com.cn/lighteam/roll4.jpeg',
         ],
+        domainImg: app.config.domain,
         indicatorDots: true,
         autoplay: true,
         interval: 5000,
         duration: 1000,
+    },
+    openVideo: function(e) {
+        var Name = e.currentTarget.dataset.Name;
+        wx.navigateTo({
+            url: '../video/video',
+            success: function(res) {
+                // success
+            },
+            fail: function() {
+                // fail
+            },
+            complete: function() {
+                // complete
+            }
+        })
+    },
+    tryhotvideo: function() {
+        var that = this;
+        wx.showLoading({
+            title: '努力加载中...',
+        })
+        that.setData({
+            hotvideoLoading: true,
+            hotvideodisabled: true
+        })
+        var url = app.config.getTryHotVideoUrl;
+        var params = {};
+        app.wxRequest.getRequest(url, params).
+        then(res => {
+                console.log('3.获取热门视频"试一试"列表', res);
+                that.setData({
+                    HotVideoData: res.data.data,
+                    hotvideoLoading: false,
+                    hotvideodisabled: false
+                })
+            })
+            .catch(res => {
+                console.log('错误信息', res)
+            })
+            .finally(function(res) {
+                console.log('finally~')
+                wx.hideLoading();
+            })
+    },
+    hotvideo: function() {
+        var that = this;
+        wx.showLoading({
+            title: '努力加载中...',
+        })
+        that.setData({
+            hotvideoLoading: true,
+            hotvideodisabled: true
+        })
+        var url = app.config.getHotVideoUrl;
+        var params = {};
+        app.wxRequest.getRequest(url, params).
+        then(res => {
+                console.log('2.获取热门视频列表', res);
+                that.setData({
+                    HotVideoData: res.data.data,
+                    hotvideoLoading: false,
+                    hotvideodisabled: false
+                })
+            })
+            .catch(res => {
+                console.log('错误信息', res)
+            })
+            .finally(function(res) {
+                console.log('finally~')
+                wx.hideLoading();
+            })
+    },
+    tryhottopic: function() {
+        var that = this;
+        that.setData({
+            hottopicLoading: true,
+            hottopicdisabled: true
+        })
+        wx.showLoading({
+            title: '努力加载中...',
+        })
+        var url = app.config.getTryHotTopicUrl;
+        var params = {};
+        app.wxRequest.getRequest(url, params).
+        then(res => {
+                console.log('3.获取热门主题"试一试"列表', res);
+                that.setData({
+                    HotTopicData: res.data.data,
+                    hottopicLoading: false,
+                    hottopicdisabled: false
+                })
+            })
+            .catch(res => {
+                console.log('错误信息', res)
+            })
+            .finally(function(res) {
+                console.log('finally~')
+                wx.hideLoading();
+            })
+    },
+    hottopic: function() {
+        var that = this;
+        that.setData({
+            hottopicLoading: true
+        })
+        wx.showLoading({
+            title: '努力加载中...',
+        })
+        var url = app.config.getHotTopicUrl;
+        var params = {};
+        app.wxRequest.getRequest(url, params).
+        then(res => {
+                console.log('2.获取热门主题列表', res);
+                that.setData({
+                    HotTopicData: res.data.data,
+                    hottopicLoading: false
+                })
+            })
+            .catch(res => {
+                console.log('错误信息', res)
+            })
+            .finally(function(res) {
+                console.log('finally~')
+                wx.hideLoading();
+            })
+    },
+    expendList: function() {
+        var that = this;
+        that.setData({
+            showBox: !that.data.showBox
+        });
+        wx.showLoading({
+            title: '努力加载中...',
+        })
+        var url = app.config.getClassesUrl;
+        var params = {};
+        app.wxRequest.getRequest(url, params).
+        then(res => {
+                console.log('1.获取分类信息列表', res);
+                that.setData({
+                    expendListData: res.data.data
+                })
+            })
+            .catch(res => {
+                console.log('错误信息', res)
+            })
+            .finally(function(res) {
+                console.log('finally~')
+                wx.hideLoading();
+            })
     },
     changeIndicatorDots: function(e) {
         this.setData({
@@ -35,7 +187,8 @@ Page({
     },
     onLoad: function(options) {
         // 生命周期函数--监听页面加载
-
+        this.hotvideo();
+        this.hottopic();
     },
 
     onReady: function() {
