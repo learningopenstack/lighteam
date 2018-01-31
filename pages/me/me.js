@@ -2,15 +2,36 @@
 var app = getApp()
 Page({
     data: {
-        userInfo:{},
-        word:'',
+        userInfo: {},
+        word: '',
+        ActionList: [{
+            name: 'notice',
+            url: '/image/notice.png',
+            txt: '系统通知'
+        }, {
+            name: 'score',
+            url: '/image/score.png',
+            txt: '积分'
+        }, {
+            name: 'zuji',
+            url: '/image/zuji.png',
+            txt: '我的足迹'
+        }, {
+            name: 'article',
+            url: '/image/article.png',
+            txt: '我的作品'
+        }, {
+            name: 'about',
+            url: '/image/about.png',
+            txt: '关于'
+        }]
     },
     onLoad: function(options) {
         // 生命周期函数--监听页面加载
         //获取code 
-        console.log(app.globalData) 
+        console.log(app.globalData)
     },
-    
+
     onReady: function() {
         // 生命周期函数--监听页面初次渲染完成
 
@@ -18,11 +39,11 @@ Page({
     onShow: function() {
         // 生命周期函数--监听页面显示
         this.setData({
-            userInfo:app.globalData.userInfo,
+            userInfo: app.globalData.userInfo,
             word: app.globalData.login.Words
         })
     },
-    
+
     onHide: function() {
         // 生命周期函数--监听页面隐藏
 

@@ -91,7 +91,7 @@ page {
 }
 
 .item-list {
-    margin-bottom: 10rpx;
+    margin-bottom: 20rpx;
 }
 
 .list-content {
@@ -107,7 +107,7 @@ page {
 }
 
 .list-content-yuyan {
-    margin-top: 10rpx;
+    margin: 20rpx 0 20rpx 0;
     font-size: 24rpx;
     color: #c7c7c7;
 }
