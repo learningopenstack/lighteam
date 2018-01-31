@@ -1,5 +1,6 @@
 {
     "pages": [
+
         "pages/index/index",
         "pages/video/video",
         "pages/me/me",
@@ -8,14 +9,14 @@
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#01ae85",
+        "navigationBarBackgroundColor": "#10BBCF",
         "navigationBarTitleText": "台球帝国",
         "navigationBarTextStyle": "white",
         "enablePullDownRefresh": false
     },
     "tabBar": {
         "color": "#888",
-        "selectedColor": "#01ae85",
+        "selectedColor": "#10BBCF",
         "borderStyle": "black",
         "backgroundColor": "#ffffff",
         "list": [{

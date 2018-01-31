@@ -66,203 +66,34 @@ page {
     font-weight: bold;
 }
 
-.notice {
+.user-action-box-left-icon {
     width: 44rpx;
     height: 44rpx;
-    margin: 5rpx 5rpx 0 0;
+    margin-right: 30rpx;
 }
 
-
-/*.userInfo {
-    background: url(https://cephcp.ztgame.com.cn/lighteam/login.png) repeat-x;
-    height: 180rpx;
-    padding: 30rpx 0 30rpx 30rpx;
+.user-action {
+    margin-top: 30rpx;
+    background: #fff;
 }
 
- .userimg {
-    width: 130rpx;
-    height: 130rpx;
-    border-radius: 50%;
-    border: 1px solid #e5e5e5;
-    margin-top: 20rpx;
-    overflow: hidden;
-    float: left
-}
-
-.userimg image {
-    width: 130rpx;
-    height: 130rpx;
-    display: inline-block;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-.username,
-.usertext {
-    color: #fff;
-    font-size: 32rpx;
-    line-height: 85rpx;
-    margin-left: 20rpx;
-    font-weight: bold;
-} */
-
-.title {
-    height: 85rpx;
-    line-height: 85rpx;
+.user-action-box {
+    padding: 30rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     color: #888;
     font-size: 28rpx;
-    padding-left: 30rpx
-}
-
-.imgs {
-    padding: 30rpx 0 30rpx 30rpx;
-    background: #fff;
-    border-top: 1rpx solid #e5e5e5;
     border-bottom: 1px solid #e5e5e5;
 }
 
-.select-img {
-    width: 116rpx;
-    height: 92rpx;
-    border: 1px solid #e5e5e5;
-    position: relative;
-    margin-right: 10rpx;
-}
-
-.select-img image.add {
-    width: 56rpx;
-    height: 56rpx;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -28rpx;
-    margin-top: -28rpx;
-}
-
-.select-img image.img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-}
-
-.camern {
-    width: 30rpx;
-    height: 30rpx;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-.nameAndPlace {
-    line-height: 86rpx;
-    padding-left: 30rpx;
-    background: #fff;
-    border-top: 1px solid #e5e5e5;
-    border-bottom: 1px solid #e5e5e5;
-    font-size: 34rpx;
-    /* font-weight: bold; */
-    margin: 20rpx 0;
-}
-
-.no-write {
-    color: #ccc;
+.user-action-box-left {
+    display: flex;
+    flex-direction: row;
 }
 
 .arrows {
     width: 16rpx;
     height: 26rpx;
     margin-left: 20rpx;
-}
-
-.shop-name {
-    border-bottom: 1px solid #e5e5e5;
-    text-align: center;
-    padding-right: 30rpx;
-    overflow: hidden;
-}
-
-.city {
-    padding-right: 30rpx;
-}
-
-.kinds-wrap {
-    padding-left: 30rpx;
-    background: #fff;
-    border-top: 1px solid #e5e5e5;
-    padding-bottom: 30rpx;
-}
-
-.kinds-wrap .kinds-title {
-    line-height: 86rpx;
-    font-size: 34rpx;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.all-kinds {
-    width: 100%;
-    overflow: hidden;
-    padding-top: 30rpx;
-}
-
-.all-kinds .kind {
-    border-radius: 30rpx;
-    font-size: 28rpx;
-    float: left;
-    margin: 10rpx;
-    padding: 0rpx 20rpx;
-    line-height: 45rpx;
-    color: #fff;
-}
-
-.huikuan,
-.guanli,
-.fankui,
-.address {
-    padding-right: 30rpx;
-    font-size: 34rpx;
-    line-height: 86rpx;
-    background: #fff;
-    overflow: hidden;
-    border-bottom: 1px solid #e5e5e5
-}
-
-.huikuan .huikuan-info,
-.guanli-info,
-.fankui-info .address-info {
-    color: #ccc;
-}
-
-.circle-ctr {
-    width: 100%;
-    display: block;
-    text-align: center;
-    font-size: 34rpx;
-    line-height: 86rpx;
-    padding-right: 30rpx;
-    background: #fff;
-    margin-top: 30rpx;
-    overflow: hidden;
-    border-bottom: 1px solid #E6E6E6;
-}
-
-
-/*========*/
-
-.circle {
-    height: 206rpx;
-    margin-bottom: 75rpx;
-}
-
-.user-action {
-    margin-top: 30rpx;
-    padding-left: 30rpx;
-    background: #fff;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.finish {
-    width: 690rpx;
-    height: 88rpx;
-    font-size: 36rpx;
-    margin-top: 100rpx;
 }

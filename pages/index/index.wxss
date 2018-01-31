@@ -20,7 +20,7 @@ page {
 .search {
     margin: 0px;
     padding: 0px;
-    background-color: #01ae85;
+    background-color: #10BBCF;
     width: 100%;
     height: 70rpx;
     position: fixed;
@@ -47,7 +47,7 @@ page {
 
 .icon {
     position: absolute;
-    left: 130rpx;
+    left: 110rpx;
     top: 12rpx;
 }
 
@@ -159,7 +159,7 @@ page {
     height: 340rpx;
     line-height: 340rpx;
     border-radius: 10rpx;
-    font-size: 28rpx;
+    font-size: 34rpx;
     color: #fff;
 }
 
