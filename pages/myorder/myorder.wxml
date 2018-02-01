@@ -1,1 +1,101 @@
-社区
+<import src="../template/search.wxml"></import>
+<view class="container">
+    <template is="search"></template>
+    <view wx:if="{{showBox}}" class="wrap" style="margin-top:70rpx;">
+        <view class=" myorder-box">
+            <view class="myorder-box-title">
+                <view class="theme">
+                    分类1
+                </view>
+                <view class="add-video" bindtap="addvideo">
+                    <image class="add" src="/image/add_hui.png"></image>
+                </view>
+
+            </view>
+            <view class="myorder-box-video">
+                <view class="myorder-box-video-img">
+                    <image src="/image/video.jpg" class="videoImg" mode="aspectFill" lazy-load='true' style="width:750rpx;height:340rpx;" />
+                    <image class="play" src="/image/play.png"></image>
+                </view>
+                <view class="myorder-box-video-txt">
+                    <view>视频标题</view>
+                    <view class="myorder-box-video-txt-right">
+                        <view>
+                            <image class="zan" src="/image/zan.png" />
+                            <text>100</text>
+                        </view>
+                        <view>
+                            <image class="see" src="/image/see.png" />
+                            <text>200</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="myorder-box-video">
+                <view class="myorder-box-video-img">
+                    <image src="/image/video.jpg" mode="aspectFill" lazy-load='true' style="width:750rpx;height:340rpx;" />
+                    <image class="play" src="/image/play.png"></image>
+                </view>
+                <view class="myorder-box-video-txt">
+                    <view>视频标题</view>
+                    <view class="myorder-box-video-txt-right">
+                        <view>
+                            <image class="zan" src="/image/zan.png" />
+                            <text>100</text>
+                        </view>
+                        <view>
+                            <image class="see" src="/image/see.png" />
+                            <text>200</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="more-txt wrap">
+            <view>
+                更多>>
+            </view>
+        </view>
+        <view class=" myorder-box">
+            <view class="myorder-box-title">
+                <view class="theme">
+                    分类2
+                </view>
+                <view class="add-video" bindtap="addvideo">
+                    <image class="add" src="/image/add_hui.png"></image>
+                </view>
+            </view>
+            <view class="myorder-box-video">
+                <view class="myorder-box-video-img">
+                    <image src="/image/video.jpg" mode="aspectFill" lazy-load='true' style="width:750rpx;height:340rpx;" />
+                    <image class="play" src="/image/play.png"></image>
+                </view>
+                <view class="myorder-box-video-txt">
+                    <view>视频标题</view>
+                    <view class="myorder-box-video-txt-right">
+                        <view>
+                            <image class="zan" src="/image/zan.png" />
+                            <text>100</text>
+                        </view>
+                        <view>
+                            <image class="see" src="/image/see.png" />
+                            <text>200</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view wx:else>
+        <view class="box swiper wrap">
+            <view class="video-item" wx:for="{{expendListData}}">
+                <view class="img-div">
+                    <view class="img-div-cover">
+                        {{item.Name}}
+                    </view>
+                    <image class="listImg-cover" mode="aspectFill" lazy-load='true' src="https://cephcp.ztgame.com.cn/lighteam/pic/{{item.Pic}}" />
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

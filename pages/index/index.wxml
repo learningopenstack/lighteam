@@ -1,5 +1,6 @@
+<import src="../template/search.wxml"></import>
 <view class="container">
-    <view class="search wrap">
+    <!-- <view class="search wrap">
         <view class="more" bindtap="expendList">
             <image class="moreImg" mode="aspectFill" lazy-load='true' src="/image/more.png" />
         </view>
@@ -9,7 +10,8 @@
             </view>
             <input class='ipt' value="{{value}}" class="ipt" bindinput="bindconfirm" confirm-type="done" bindblur="bindOver" placeholder="请输入搜索内容" />
         </view>
-    </view>
+    </view> -->
+    <template is="search"></template>
     <view wx:if="{{showBox}}">
         <view class="wrap swiper">
             <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:340rpx;">

@@ -2,10 +2,10 @@
     "pages": [
 
         "pages/index/index",
+        "pages/add/add",
+        "pages/myorder/myorder",
         "pages/video/video",
-        "pages/me/me",
-        "pages/myorder/myorder"
-
+        "pages/me/me"
     ],
     "window": {
         "backgroundTextStyle": "light",

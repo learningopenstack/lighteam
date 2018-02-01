@@ -1,0 +1,72 @@
+page {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.myorder-box {}
+
+.myorder-box-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20rpx;
+    background-color: #fff;
+}
+
+.add-video {
+    padding: 20rpx;
+}
+
+.add {
+    width: 44rpx;
+    height: 44rpx;
+}
+
+.myorder-box-video {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    margin-bottom: 20rpx;
+}
+
+.myorder-box-video-img {
+    position: relative;
+}
+
+.play {
+    position: absolute;
+    width: 90rpx;
+    height: 90rpx;
+    left: 330rpx;
+    top: 125rpx;
+}
+
+.myorder-box-video-txt {
+    font-size: 30rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20rpx;
+}
+
+.myorder-box-video-txt-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.myorder-box-video-txt-right view {
+    margin-right: 20rpx;
+}
+
+.more-txt {
+    display: flex;
+    flex-direction: row;
+    color: #b6b6b6;
+    font-size: 30rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-bottom: 20rpx;
+}
