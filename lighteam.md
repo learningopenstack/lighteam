@@ -116,7 +116,6 @@
 	此处样式同需求文档中“社区”页面
 
 
-
 ## 首页 ##
 
 ### 轮播图 ###
@@ -301,15 +300,16 @@
 		- userid  用户id
 		- key     用户key
 		- videoid  视频id
-		- start    评论开始 比如从第一条开始 start=1
+		- start    评论开始 比如从第一条开始 start=1，当start=1时，返回值中带有all（评论总条数)
 		- count    此处获取的评论数量 数量为5， count=5； 返回为1，2，3，4，5条评论
 		 
 	返回值：（对象）
 	    - all    该视频的评论总条数，用于分页，展示N个下一页；
-	     - Nickname 评论者的昵称：
-	     - Imgurl   评论者头像url
-	     - comment  评论内容
-	     - Pic      评论图像【数组】  #可能有,最多5张图片
+	    - Nickname 评论者的昵称：
+	    - Imgurl   评论者头像url
+	    - comment  评论内容
+	    - create   创建时间
+	    - Pic      [string 数组]评论图像  #可能有,最多6张图片
 
 第二次请求： 【根据第一次请求中的评论总数来确定是否需要第二次请求】
 	    
@@ -327,16 +327,20 @@
 				   若只有9，10，11条则只返回3条；
 		 
 	返回值：（对象数组）
-	     - Nickname 评论者的昵称：
-	     - Imgurl   评论者头像url
-	     - comment  评论内容
-	     - Pic      评论图像【数组】  #可能有,最多5张图片
+	    - all      此时为0
+	    - Nickname 评论者的昵称：
+	    - Imgurl   评论者头像url
+	    - comment  评论内容
+	    - create   创建时间
+	    - Pic      [string 数组]评论图像  #可能有,最多6张图片
 
 ### 用户提交评论 ###
+分两次请求，第一次仅提交评论内容，并获取上传文件的uploadkey用于第二次上传图片；
 
+#### 第一次 ####
 	url: 'https://{domain}/lighteam/commentcommit',
 	method: "POST",
-	data：{视频id等信息}
+	data：{如下说明}
 	header: {
 		"Content-Type": "application/x-www-form-urlencoded"
 	},
@@ -345,12 +349,67 @@
 		- userid   用户id
 		- key      用户key
 		- videoid  视频id
-		-        评论开始 比如从第一条开始 start=1
-		- count    此处获取的评论数量 数量为5， count=5； 返回为1，2，3，4，5条评论
+		- comment  评论内容，50字之内，否则返回400参数错误
+        - piccount 图片数量（0-6，至多6张图片,不在0-6之间则返回400参数错误）
 		 
 	返回值：（对象）
-	    - all    该视频的评论总条数，用于分页，展示N个下一页；
-	    - 评论数组：
-	     - 评论者的昵称：
-	     - 评论者头像url
-	     - 评论内容
+	    - uploadkey   piccount为0则为空，参数piccount属于1-6时候；返回文件（视频，图片）上传的key，该key在server端保存5分钟；过期则无效
+	    - data        “success”
+
+#### 第二次 ####
+	
+	** 上传失败则需要重新尝试一次；再给客户端弹框报错； **
+
+	url: 'https://{domain}/lighteam/uploadfile',
+	method: "POST",
+	data：{如下说明}
+	
+	请求参数：[参见如下示例]
+        - name       固定参数为"file"
+        表单数据：
+		- uploadkey  上传文件的key【获取之后5分钟之内有效】
+		- order      上传的参数picount中的第几张，1/2/3/4/5/6
+
+		 
+	返回值：（对象）
+	    - data        “success”
+
+	示例如下：
+      wx.uploadFile({
+        url: 'https://{domain}/lighteam/uploadfile', //仅为示例，非真实的接口地址
+        filePath: tempFilePaths[0],
+        name: 'file',                     #固定为file
+        formData: {
+            order:      '1'
+			uploadkey： 'XXXXXXXXXXXXXXXXXXXX'
+        },
+        success: function (res) {
+          console.log("uploadfile success")
+          console.log(res)
+          //do something
+        }，
+		failed: function(res){
+		  //再尝试一次，如果第二次再失败则弹框报错
+		}
+
+## 社区页面 ##
+
+【主题需要分页展示， 每个主题下展示4个视频信息； 之后加"更多"图标来获取该主题下视频】
+小程序端onload方法中，请求：
+
+	url: 'https://{domain}/lighteam/topic',
+	method: "GET",
+	data：{参见如下说明}
+	header: {
+		"Content-Type": "application/x-www-form-urlencoded"
+	},
+	
+	请求参数：
+		- start    从第一条开始 start=1
+		- count    此主题数量 数量为5， count=5； 每次获取最多为5
+		 
+	返回值：（对象）
+	    - all      主题总数，只有当start=1时，才返回，其他请求则该参数返回0；
+		- []video  视频信息，数组长度为4；这个是定值；
+
+更多 >>> 
