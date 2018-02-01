@@ -1,0 +1,88 @@
+.search {
+    margin: 0px;
+    padding: 0px;
+    background-color: #10BBCF;
+    width: 100%;
+    height: 70rpx;
+    position: fixed;
+    z-index: 55;
+    display: flex;
+    flex-direction: row;
+}
+
+.swiper {
+    margin-top: 70rpx;
+    background-color: #fff;
+}
+
+.more {
+    width: 70rpx;
+    height: 70rpx;
+}
+
+.moreImg {
+    width: 35rpx;
+    height: 35rpx;
+    float: right;
+}
+
+.search-view {
+    width: 730rpx;
+}
+
+.icon {
+    position: absolute;
+    left: 110rpx;
+    top: 12rpx;
+}
+
+.ipt {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    background-color: #fff;
+    width: 84%;
+    height: 50rpx;
+    margin-left: 5%;
+    border-radius: 10rpx;
+    font-size: 28rpx;
+    padding-left: 50rpx;
+}
+
+.img-div {
+    position: relative;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.video-item {
+    background-color: #fff;
+    border-radius: 10rpx;
+    margin-bottom: 20rpx;
+}
+
+.img-div-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background: rgba(0, 0, 0, .6);
+    width: 340rpx;
+    height: 340rpx;
+    line-height: 340rpx;
+    border-radius: 10rpx;
+    font-size: 34rpx;
+    color: #fff;
+}
+
+.listImg-cover {
+    width: 340rpx;
+    height: 340rpx;
+    border-radius: 10rpx;
+}

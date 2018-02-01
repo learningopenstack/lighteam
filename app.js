@@ -1,4 +1,4 @@
-import config from 'utils/config'
+import config from 'utils/config';
 var wxApi = require('utils/wxApi')
 var wxRequest = require('utils/wxRequest')
 App({

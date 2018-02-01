@@ -1,9 +1,6 @@
 /**app.wxss**/
 
-@import './style/weui.wxss';
-@import '/style/animate.wxss';
-@import './style/font-awesome.min.wxss';
-@import '/style/common.wxss';
+@import "pages/template/search.wxss";
 Page {
     background-color: #f0eff5;
 }
@@ -31,12 +28,12 @@ Page {
 
 button[type="primary"] {
     color: #FFFFFF;
-    background-color: #01ae85;
+    background-color: #10BBCF;
 }
 
 .button-hover[type="primary"] {
     color: #FFFFFF;
-    background-color: #01ae85;
+    background-color: #10BBCF;
 }
 
 .load-more {
@@ -45,4 +42,35 @@ button[type="primary"] {
     font-size: 30rpx;
     height: 70rpx;
     line-height: 88rpx;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: initial;
+    box-sizing: border-box;
+}
+
+.wrap {
+    width: 100%;
+}
+
+.theme {
+    padding: 20rpx;
+    font-size: 34rpx;
+    font-weight: bold;
+}
+
+.zan {
+    width: 20rpx;
+    height: 22rpx;
+    margin-right: 3rpx;
+}
+
+.see {
+    width: 22rpx;
+    height: 22rpx;
+    margin-right: 3rpx;
 }

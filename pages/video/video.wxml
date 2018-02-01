@@ -16,12 +16,12 @@
                 <view style="height:40rpx;text-align:right;font-size:32rpx;">({{valLen}}/50)</view>
             </view>
             <view class="imgs">
-                <view class="box left" wx:for="{{imgs}}">
+                <view class="left" wx:for="{{imgs}}">
                     <image class="img" bindload="imageLoad" mode="aspectFill" src="{{item}}">
                         <image class="delete" src="/image/close.png" bindtap="delete" data-index="{{index}}"></image>
                     </image>
                 </view>
-                <view wx:if="{{imgs.length<5}}" class="box left" id="one_box">
+                <view wx:if="{{imgs.length<5}}" class="left" id="one_box">
                     <image bindtap="chooseImage" class="add" src="/image/add_hui.png"></image>
                 </view>
             </view>

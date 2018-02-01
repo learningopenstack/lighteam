@@ -1,7 +1,49 @@
 //获取应用实例
 var app = getApp()
 Page({
-    data: {},
+    data: {
+        showBox: true,
+
+    },
+    expendList: function() {
+        var that = this;
+        that.setData({
+            showBox: !that.data.showBox
+        });
+        wx.showLoading({
+            title: '努力加载中...',
+        })
+        var url = app.config.getClassesUrl;
+        var params = {};
+        app.wxRequest.getRequest(url, params).
+        then(res => {
+                console.log('1.获取分类信息列表', res);
+                that.setData({
+                    expendListData: res.data.data
+                })
+            })
+            .catch(res => {
+                console.log('错误信息', res)
+            })
+            .finally(function(res) {
+                console.log('finally~')
+                wx.hideLoading();
+            })
+    },
+    addvideo: function() {
+        wx.navigateTo({
+            url: '../add/add',
+            success: function(res) {
+                // success
+            },
+            fail: function() {
+                // fail
+            },
+            complete: function() {
+                // complete
+            }
+        })
+    },
     onLoad: function(options) {
         // 生命周期函数--监听页面加载
 
