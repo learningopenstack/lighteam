@@ -26,7 +26,7 @@
             热播视频
         </view>
         <view class="box">
-            <view class="video-item" wx:for="{{HotVideoData}}" bindtap="openVideo" data-Name="{{item.Name}}">
+            <view class="video-item" wx:for="{{HotVideoData}}" bindtap="openVideo" data-Name="{{item}}">
 
                 <image class="listImg" mode="aspectFill" lazy-load='true' src="https://cephcp.ztgame.com.cn/lighteam/pic/{{item.Pic}}" />
                 <view class="list-content">

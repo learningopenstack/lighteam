@@ -1,9 +1,13 @@
 <view class="container">
     <view class="wrap">
         <view class="theme">
-            标题文字
+            {{vtitle}}
         </view>
+        <!--
         <video id="myVideo" class="top-video" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
+            binderror="videoErrorCallback" controls></video>
+            -->
+        <video id="myVideo" class="top-video" src="{{vurl}}"
             binderror="videoErrorCallback" controls></video>
     </view>
     <view class="theme wrap">
@@ -27,11 +31,15 @@
             </view>
         </view>
         <view class="publish right">
-            <button bindtap="bindPublish" class="btn" disabled="{{!disabled}}">发布</button>
+            <button bindtap="bindPublish" class="btn" disabled="{{disabled}}" id="{{vid}}">发布</button>
         </view>
     </view>
-
-    <view class="wrap">
+    
+    <view wx:if="{{allcomment == 0}}"  style="height:28rpx; font-size:24rpx;margin-top:12rpx; margin-left:200rpx;"> 
+      暂无评论，速来坐沙发 ~
+    </view>
+    <view wx:else>
+      <view class="wrap">
         <view class="talking">
             <view class="item-list">
                 <view class="list-content">
@@ -81,5 +89,6 @@
         <!-- <view wx:if='{{loadPage}}' class='load-more'>正在加载...</view>
         <view wx:if='{{!loadPage&&!loadOver}}' class='load-more'>上拉加载更多</view>
         <view wx:if='{{loadOver}}' class='load-more'>没有更多评论了！</view> -->
+      </view>
     </view>
 </view>

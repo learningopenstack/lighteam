@@ -10,7 +10,8 @@ App({
     wxApi: wxApi,
     globalData: { //全局数据
         userInfo: null,
-        login: null
+        login: null,
+        videourl:'https://cephcp.ztgame.com.cn/lighteam/video/'
     },
 
     bindToIndex: function() { //返回首页

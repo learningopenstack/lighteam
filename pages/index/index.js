@@ -16,9 +16,14 @@ Page({
         duration: 1000,
     },
     openVideo: function(e) {
-        var Name = e.currentTarget.dataset.Name;
+      console.log('openvideo;')
+      console.log(e)
+      console.log("end")
+      var item = e.currentTarget.dataset.name;
+      console.log(item)
+
         wx.navigateTo({
-            url: '../video/video',
+            url: '../video/video?id='+item.Id + '&name=' + item.Name + '&title=' + item.Title, 
             success: function(res) {
                 // success
             },

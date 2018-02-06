@@ -8,18 +8,35 @@ Page({
     expendList: function() {
         var that = this;
         that.setData({
-            showBox: !that.data.showBox
+            showBox: that.data.showBox
         });
         wx.showLoading({
             title: '努力加载中...',
         })
-        var url = app.config.getClassesUrl;
-        var params = {};
+
+        /*
+        wx.getSystemInfo({
+          success: function (res) {
+            var windowWidth = res.windowWidth;
+            //video标签认宽度300px、高度225px，设置宽高需要通过wxss设置width和height。
+            var videoHeight = (225 / 300) * windowWidth//屏幕高宽比  
+            console.log('videoWidth: ' + windowWidth)
+            console.log('videoHeight: ' + videoHeight)
+            that.setData({
+              videoWidth: windowWidth,
+              videoHeight: videoHeight
+            })
+          }
+        })*/
+
+        var url = app.config.getClassesVideo;
+        var params = {start: 1, count:3};
         app.wxRequest.getRequest(url, params).
         then(res => {
-                console.log('1.获取分类信息列表', res);
+                console.log('社区页面获取分类列表', res);
                 that.setData({
-                    expendListData: res.data.data
+                    alltopic: res.data.data.All,
+                    expendListData: res.data.data.Base
                 })
             })
             .catch(res => {
@@ -44,9 +61,20 @@ Page({
             }
         })
     },
-    onLoad: function(options) {
-        // 生命周期函数--监听页面加载
 
+    waitplay: function(){
+      wx.showLoading({
+        title: '努力加载中...',
+      })
+
+      setTimeout(function () {
+        wx.hideLoading()
+      }, 2000)
+    },
+
+    onLoad: function(options) {
+      // 生命周期函数--监听页面加载
+      this.expendList()
     },
 
     onReady: function() {
