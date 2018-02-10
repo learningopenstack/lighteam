@@ -95,5 +95,5 @@ page {
 .arrows {
     width: 16rpx;
     height: 26rpx;
-    margin-left: 20rpx;
+    margin-left: 460rpx;
 }

@@ -11,7 +11,8 @@ App({
     globalData: { //全局数据
         userInfo: null,
         login: null,
-        videourl:'https://cephcp.ztgame.com.cn/lighteam/video/'
+        myvideos: null,
+        videourl:'https://cephcp.ztgame.com.cn/lighteam/upload/video'
     },
 
     bindToIndex: function() { //返回首页

@@ -10,18 +10,27 @@
         </view>
     </view>
     <!-- 用户操作 -->
-    <view class="user-action">
+    <view class="user-action"  >
         <!-- 成员管理 -->
-        <view class="user-action-box" wx:for="{{ActionList}}">
-            <view class="user-action-box-left">
+        <view class="user-action-box"  wx:for="{{ActionList}}" >
+          <!--
+          <view data-id="{{item.id}}" bindtap="action">
+          -->
+            <view class="user-action-box-left" data-id="{{item.id}}" bindtap="action">
                 <image class="user-action-box-left-icon" src="{{item.url}}"></image>
                 <view>
                     {{item.txt}}
                 </view>
+                <image class="arrows" src="/image/right.png"></image>
+
             </view>
-            <view>
+          <!--
+            <view  class="user-action-box-left" data-id="{{item.id}}" bindtap="action">>
                 <image class="arrows" src="/image/right.png"></image>
             </view>
+          
+          </view>
+          -->
         </view>
     </view>
 </view>

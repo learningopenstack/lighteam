@@ -9,8 +9,12 @@ export default {
     getHotTopicUrl: ip + 'lighteam/hottopic',
     getTryHotTopicUrl: ip + 'lighteam/tryhottopic',
 
+    getClassType: ip + 'lighteam/topictype',
     getVideoComment: ip + 'lighteam/comment',
     postComment: ip + 'lighteam/commentcommmit',
     uploadfile: ip + 'lighteam/uploadfile',
+    uploadvideo: ip + 'lighteam/uploadvideo',
+    getuploadkey: ip + 'lighteam/getloadkey',
+    myvideo: ip + 'lighteam/myvideo',
     domainImg: ip + 'lighteam/'
 }

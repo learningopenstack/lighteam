@@ -1,0 +1,41 @@
+<view class="container">
+
+  <view style="width: 100%;  ">
+    <scroll-view class="meal-list" scroll-x scroll-with-animation>
+      <view wx:for="{{navbar}}" class="{{currentTab===index ? 'selected-meal':'meal-item'}}" bindtap="navbarTap" data-idx="{{index}}" wx:key="unique">{{item["Name"]}}</view>
+    </scroll-view>
+  </view>
+
+  <view class=" myorder-box">
+
+    <view wx:for="{{info}}" wx:for-item="item2" wx:key="id">
+      <view class="myorder-box-video">
+        <view class="myorder-box-video-img">
+          
+          <video id="myVideo" class="top-video" src="https://cephcp.ztgame.com.cn/lighteam/upload/video/{{item2.Name}}" binderror="videoErrorCallback" controls></video>
+          <!--
+          <video id="myVideo" class="top-video" src="https://cephcp.ztgame.com.cn/lighteam/upload/video/demo5.mp4" binderror="videoErrorCallback" controls></video>
+          -->
+        </view>
+        <view class="myorder-box-video-txt">
+          <view>{{item2.Title}}</view>
+
+          <view class="myorder-box-video-txt-right">
+            <view>
+              <image class="zan" src="/image/zan.png" />
+              <text>{{item2.Zan}}</text>
+            </view>
+            <view>
+              <image class="see" src="/image/see.png" />
+              <text>{{item2.View}}</text>
+            </view>
+          </view>
+
+        </view>
+        <view class="myorder-box-video-txt">{{item2.Second}} </view>
+
+      </view>
+    </view>
+  </view>
+
+</view>

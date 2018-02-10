@@ -3,7 +3,11 @@ var app = getApp()
 Page({
     data: {
         showBox: true,
-
+        navbar: ['自然物语', '手工坊', '小画廊', "创造家", '奇妙碰撞', '工程大师', '好心情'],
+        currentTab: 0,
+        currenttopic: '',
+        info: [],
+        show: ['半月维保', '季度维保', '半年维保', "年度维保", '55', '66', '77'],
     },
     expendList: function() {
         var that = this;
@@ -27,7 +31,7 @@ Page({
               videoHeight: videoHeight
             })
           }
-        })*/
+        })
 
         var url = app.config.getClassesVideo;
         var params = {start: 1, count:3};
@@ -46,7 +50,65 @@ Page({
                 console.log('finally~')
                 wx.hideLoading();
             })
+        */
+        this.getTypes()
+        wx.hideLoading()
     },
+
+    getTypes: function () {
+      var that = this
+      var url = app.config.getClassType;
+      var params = {};
+      app.wxRequest.getRequest(url, params).
+        then(res => {
+          console.log('社区页面页面，返回主题分类：', res)
+          that.setData({
+            navbar: res.data.data
+          })
+          //获取分类视频信息
+          var order = this.data.currentTab
+          var topicid = that.data.navbar[order].Id
+          var topicname = that.data.navbar[order].Name
+          console.log("topicid;", topicid)
+          //发送请求获取视频信息：
+          wx.request({
+            url: app.config.getClassesVideo,
+            data: {
+              topicid: topicid,
+              start: 1,
+              count: 3,
+            },
+            method: 'GET',
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+
+            success: (res) => {
+              console.log("获取主题详情视频返回：", res)
+              if (res.data.Code == 200) {
+                this.setData({
+                  currenttopic: topicname,
+                  info: res.data.data.Base,
+                  total: res.data.data.All
+                })
+              } else {
+                console.log('request topicinfo error')
+              }
+            },
+            fail: function (fail) {
+              console.log(fail)
+            },
+          })
+        })
+        .catch(res => {
+          console.log('错误信息', res)
+        })
+        .finally(function (res) {
+          console.log('finally~')
+          //wx.hideLoading();
+        })
+    },
+
     addvideo: function() {
         wx.navigateTo({
             url: '../add/add',
@@ -108,5 +170,47 @@ Page({
             desc: 'desc', // 分享描述
             path: 'path' // 分享路径
         }
-    }
+    },
+    //响应点击导航栏
+    navbarTap: function (e) {
+      var that = this;
+      that.setData({
+        currentTab: e.currentTarget.dataset.idx,
+      })
+      var order = this.data.currentTab
+      var topicid = that.data.navbar[order].Id
+      var topicname = that.data.navbar[order].Name
+      console.log("topicid;", topicid)
+      var infos = new Array()
+      //发送请求获取视频信息：
+      wx.request({
+        url: app.config.getClassesVideo,
+        data: {
+          topicid: topicid,
+          start: 1,
+          count: 3,
+        },
+        method: 'GET',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+
+        success: (res) => {
+          console.log("获取主题详情视频返回：", res)
+          if (res.data.Code == 200) {
+            this.setData({
+              currenttopic: topicname,
+              info: res.data.data.Base,
+              total: res.data.data.All
+            })
+          } else {
+            console.log('request topicinfo error')
+          }
+        },
+        fail: function (fail) {
+          console.log(fail)
+        },
+      })
+    },
+
 })

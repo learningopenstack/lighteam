@@ -1,60 +1,55 @@
 <import src="../template/search.wxml"></import>
 <view class="container">
-    <template is="search"></template>
-    <view wx:if="{{showBox}}" class="wrap" style="margin-top:70rpx;">
-      <view wx:for="{{expendListData}}" wx:for-item="item" wx:key="id" >
-        <view class=" myorder-box">
-            <view class="myorder-box-title">
-                <view class="theme">
-                {{ item.Tname }}
-                </view >
+  <template is="search"></template>
 
-                <!--
-                <view style="height:24rpx; font-size:20rpx;margin-top:30rpx;" >
-                <text decode="{{true}}" space="{{true}}">一二三四一二三四\n一二三四一二三四 </text>
-                </view>
-                -->
+<view  style="margin-top:75rpx; width: 100%;  ">
+  <scroll-view class="meal-list" scroll-x scroll-with-animation>
+    <view wx:for="{{navbar}}" class="{{currentTab===index ? 'selected-meal':'meal-item'}}" bindtap="navbarTap" data-idx="{{index}}" wx:key="unique">{{item["Name"]}}</view>
+  </scroll-view>
+</view>
+<!--<view>  
+  {{show[currentTab]}} 
+</view> -->
 
-                <view class="add-video" bindtap="addvideo">
-                    <image class="add" src="/image/add_hui.png"></image>
-                </view>
-            </view>
-            <view wx:for="{{item.Vall}}" wx:for-item="item2" wx:key="id">
+  <view wx:if="{{showBox}}" class="wrap" >
+      <view class=" myorder-box">
+        <view class="myorder-box-title">
+          <view class="theme">
+            {{ currenttopic}}
+          </view>
+
+          <view class="add-video" bindtap="addvideo">
+            <image class="add" src="/image/add_hui.png"></image>
+          </view>
+        </view>
+        <view wx:for="{{info}}" wx:for-item="item2" wx:key="id">
           <!--  <view class="myorder-box-video" bindtap="waitplay"> -->
-               <view class="myorder-box-video"> 
-                <view class="myorder-box-video-img">
-                            <video id="myVideo" class="top-video" src="https://cephcp.ztgame.com.cn/lighteam/video/{{item2.Vname}}"
-            binderror="videoErrorCallback" controls></video>
+          <view class="myorder-box-video">
+            <view class="myorder-box-video-img">
+              <video id="myVideo" class="top-video" src="https://cephcp.ztgame.com.cn/lighteam/upload/video/{{item2.Vname}}" binderror="videoErrorCallback" controls></video>
 
-                    <!--
-                    <video src="https://cephcp.ztgame.com.cn/lighteam/video/demo.mp4" controls class="videoImg" style="width:{{videoWidth}}px;height:{{videoHeight}}px;" lazy-load='true'>
-                    </video>
-                    
-                    <image src="/image/video.jpg" class="videoImg" mode="aspectFill" lazy-load='true' style="width:750rpx;height:340rpx;" />
-                    <image class="play" src="/image/play.png"></image>
-                    -->
-                </view>
-                <view class="myorder-box-video-txt">
-                    <view>{{item2.Vtitle}}</view>
-                    
-                    <view class="myorder-box-video-txt-right">
-                        <view>
-                            <image class="zan" src="/image/zan.png" />
-                            <text>{{item2.Vzan}}</text>
-                        </view>
-                        <view>
-                            <image class="see" src="/image/see.png" />
-                            <text>{{item2.Vview}}</text>
-                        </view>
-                    </view>
-                  
-                </view>
-                <view class="myorder-box-video-txt">{{item2.Vtitle}} </view>
-              
             </view>
+            <view class="myorder-box-video-txt">
+              <view>{{item2.Vtitle}}</view>
+
+              <view class="myorder-box-video-txt-right">
+                <view>
+                  <image class="zan" src="/image/zan.png" />
+                  <text>{{item2.Vzan}}</text>
+                </view>
+                <view>
+                  <image class="see" src="/image/see.png" />
+                  <text>{{item2.Vview}}</text>
+                </view>
+              </view>
+
             </view>
-          
-          <!--
+            <view class="myorder-box-video-txt">{{item2.Vtitle}} </view>
+
+          </view>
+        </view>
+
+        <!--
             <view class="myorder-box-video">
                 <view class="myorder-box-video-img">
                     <image src="/image/video.jpg" mode="aspectFill" lazy-load='true' style="width:750rpx;height:340rpx;" />
@@ -75,15 +70,14 @@
                 </view>
             </view>
           -->
-        </view>
-        <view class="more-txt wrap">
-            <view>
-                更多>>
-            </view>
+      </view>
+      <view class="more-txt wrap">
+        <view>
+          更多>>
         </view>
       </view>
 
-      <!--
+    <!--
         <view class=" myorder-box">
             <view class="myorder-box-title">
                 <view class="theme">
@@ -114,17 +108,17 @@
             </view>
         </view>
       -->
-    </view>
-    <view wx:else>
-        <view class="box swiper wrap">
-            <view class="video-item" wx:for="{{expendListData}}">
-                <view class="img-div">
-                    <view class="img-div-cover">
-                        {{item.Name}}
-                    </view>
-                    <image class="listImg-cover" mode="aspectFill" lazy-load='true' src="https://cephcp.ztgame.com.cn/lighteam/load.gif" />
-                </view>
-            </view>
+  </view>
+  <view wx:else>
+    <view class="box swiper wrap">
+      <view class="video-item" wx:for="{{expendListData}}">
+        <view class="img-div">
+          <view class="img-div-cover">
+            {{item.Name}}
+          </view>
+          <image class="listImg-cover" mode="aspectFill" lazy-load='true' src="https://cephcp.ztgame.com.cn/lighteam/load.gif" />
         </view>
+      </view>
     </view>
+  </view>
 </view>

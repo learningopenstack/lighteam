@@ -5,12 +5,13 @@
         "pages/add/add",
         "pages/myorder/myorder",
         "pages/video/video",
+        "pages/video/myvideo",
         "pages/me/me"
     ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#10BBCF",
-        "navigationBarTitleText": "台球帝国",
+        "navigationBarTitleText": "Hello Buddy",
         "navigationBarTextStyle": "white",
         "enablePullDownRefresh": false
     },
