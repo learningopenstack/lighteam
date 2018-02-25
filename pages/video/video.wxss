@@ -46,6 +46,7 @@ page {
 
 .imgs {
     height: 116rpx;
+    margin-left: 25rpx;
 }
 
 .imgs .img {
@@ -108,12 +109,12 @@ page {
 
 .list-content-yuyan {
     margin: 20rpx 0 20rpx 0;
-    font-size: 24rpx;
-    color: #c7c7c7;
+    margin-left: 30rpx;
+    font-size: 26rpx;
 }
 
 .list-content-txt {
-    margin-left: 10rpx;
+    margin-left: 20rpx;
     margin-top: 10rpx;
     font-size: 24rpx;
     color: #c7c7c7;
@@ -137,4 +138,6 @@ page {
 .line-heng {
     height: 2rpx;
     background-color: #c7c7c7;
+    margin-top: 15rpx;
+    width:150%;
 }

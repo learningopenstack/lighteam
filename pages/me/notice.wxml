@@ -1,0 +1,5 @@
+<view class="user-action">
+  <view class="user-action-box" wx:for="{{noticeData}}">
+    {{item}}
+  </view>
+</view>

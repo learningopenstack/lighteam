@@ -4,10 +4,13 @@ export default {
     getLoginUrl: ip + 'lighteam/login',
     getClassesUrl: ip + 'lighteam/classes',
     getClassesVideo: ip + 'lighteam/topic',
+    getindex: ip + 'lighteam/index',
     getHotVideoUrl: ip + 'lighteam/hotvideo',
     getTryHotVideoUrl: ip + 'lighteam/tryhotvideo',
     getHotTopicUrl: ip + 'lighteam/hottopic',
     getTryHotTopicUrl: ip + 'lighteam/tryhottopic',
+    getnoticeUrl: ip + 'lighteam/notice',
+    gethistoryUrl: ip + 'lighteam/historys',
 
     getClassType: ip + 'lighteam/topictype',
     getVideoComment: ip + 'lighteam/comment',

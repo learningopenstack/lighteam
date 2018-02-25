@@ -15,9 +15,9 @@
     <view wx:if="{{showBox}}">
         <view class="wrap swiper">
             <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:340rpx;">
-                <block wx:for="{{imgUrls}}">
+                <block wx:for="{{indexvideos}}">
                     <swiper-item>
-                        <image src="{{item}}" mode="aspectFill" lazy-load='true' class="slide-image" style="width:750rpx;height:340rpx;" />
+                        <image src="https://cephcp.ztgame.com.cn/lighteam/pic/{{item.Pic}}" mode="aspectFill" lazy-load='true' class="slide-image" style="width:750rpx;height:340rpx;" bindtap="openVideo" data-Name="{{item}}" />
                     </swiper-item>
                 </block>
             </swiper>
@@ -41,7 +41,7 @@
                     </view>
                     <view class="list-content-txt-two">
                         <view class="list-content-txt-two-info">
-                            我滴天呐
+                            {{item.Second}}
                         </view>
                         <view>
                             <image class="zan" src="/image/zan.png" />
@@ -50,7 +50,7 @@
                     </view>
                 </view>
             </view>
-            <button type="default" class="button" loading="{{hotvideoLoading}}" bindtap="tryhotvideo" disabled='{{hotvideodisabled}}'>换一批试试</button>
+            <button type="default" class="button" loading="{{hotvideoLoading}}" bindtap="tryhotvideo" disabled='{{hotvideodisabled}}'>换一换</button>
         </view>
         <view class="theme" style="padding:40rpx 0 0 20rpx;">
             热门专题
@@ -62,7 +62,7 @@
                 </view>
                 <image class="listImg" mode="aspectFill" lazy-load='true' src="https://cephcp.ztgame.com.cn/lighteam/pic/{{item.Pic}}" />
             </view>
-            <button type="default" class="button" loading="{{hottopicLoading}}" bindtap="tryhottopic" disabled='{{hottopicdisabled}}'>换一批试试</button>
+            <button type="default" class="button" loading="{{hottopicLoading}}" bindtap="tryhottopic" disabled='{{hottopicdisabled}}'>换一换</button>
         </view>
     </view>
     <view wx:else>

@@ -3,6 +3,7 @@ var app = getApp()
 Page({
     data: {
         showBox: true,
+        indexvideos: [],
         imgUrls: [
             'https://cephcp.ztgame.com.cn/lighteam/roll1.jpeg',
             'https://cephcp.ztgame.com.cn/lighteam/roll2.jpeg',
@@ -35,6 +36,28 @@ Page({
             }
         })
     },
+
+    //add by cp
+    getindex: function(){
+      var that = this;
+      var url = app.config.getindex;
+      var params = {};
+      app.wxRequest.getRequest(url, params).
+        then(res => {
+          console.log('1.获取轮播视频信息', res);
+          that.setData({
+            indexvideos: res.data.data
+          })
+        })
+        .catch(res => {
+          console.log('错误信息', res)
+        })
+        .finally(function (res) {
+          console.log('finally~')
+          wx.hideLoading();
+        })
+    },
+
     tryhotvideo: function() {
         var that = this;
         wx.showLoading({
@@ -192,6 +215,7 @@ Page({
     },
     onLoad: function(options) {
         // 生命周期函数--监听页面加载
+        this.getindex();
         this.hotvideo();
         this.hottopic();
     },

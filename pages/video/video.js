@@ -5,6 +5,10 @@ Page({
         imgs: [],
         content: '',
         valLen: 0,
+        testImgs: ['https://cephcp.ztgame.com.cn/lighteam/roll1.jpeg',
+          'https://cephcp.ztgame.com.cn/lighteam/roll2.jpeg',
+          'https://cephcp.ztgame.com.cn/lighteam/roll3.jpeg',
+          'https://cephcp.ztgame.com.cn/lighteam/roll4.jpeg',]
     },
     onLoad: function(options) {
         // 生命周期函数--监听页面加载
@@ -228,5 +232,14 @@ Page({
             desc: 'desc', // 分享描述
             path: 'path' // 分享路径
         }
+    },
+    previewImage: function (e) {
+      var that = this,
+        index = e.currentTarget.dataset.index;
+        var images = e.currentTarget.dataset.images;
+      wx.previewImage({
+        current: images[index],
+        urls: images
+      })
     }
 })

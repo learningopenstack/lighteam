@@ -1,0 +1,18 @@
+.user-action {
+    margin-top: 30rpx;
+    background: #fff;
+}
+
+.user-action-box {
+    padding: 30rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #888;
+    font-size: 28rpx;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+
+

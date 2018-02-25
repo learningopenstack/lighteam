@@ -6,7 +6,11 @@
         "pages/myorder/myorder",
         "pages/video/video",
         "pages/video/myvideo",
-        "pages/me/me"
+        "pages/me/about",
+        "pages/me/me",
+        "pages/me/notice",
+        "pages/me/score",
+        "pages/me/zuji"
     ],
     "window": {
         "backgroundTextStyle": "light",

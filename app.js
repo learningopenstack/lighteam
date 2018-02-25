@@ -12,7 +12,7 @@ App({
         userInfo: null,
         login: null,
         myvideos: null,
-        videourl:'https://cephcp.ztgame.com.cn/lighteam/upload/video'
+        videourl:'https://cephcp.ztgame.com.cn/lighteam/upload/video/'
     },
 
     bindToIndex: function() { //返回首页

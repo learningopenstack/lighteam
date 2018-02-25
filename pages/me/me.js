@@ -77,7 +77,93 @@ Page({
       
       if (event.currentTarget.dataset.id==3){
         this.myvideo()
+      }else if(event.currentTarget.dataset.id==4){
+        this.uploadvideo()
+      }else if(event.currentTarget.dataset.id==1){
+        this.notice()
+      }else if(event.currentTarget.dataset.id==2){
+        this.score()
+      } else if (event.currentTarget.dataset.id == 5) {
+        console.log('zuji')
+        this.zuji()
+      } else if (event.currentTarget.dataset.id == 6) {
+        this.about()
       }
+    },
+
+    zuji:function(){
+      wx.navigateTo({
+        url: '../me/zuji',
+        success: function (res) {
+          // success
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        }
+      })
+    },
+
+    about: function(){
+      wx.navigateTo({
+        url: '../me/about',
+        success: function (res) {
+          // success
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        }
+      })
+    },
+
+    score:function(){
+      wx.navigateTo({
+        url: '../me/score',
+        success: function (res) {
+          // success
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        }
+      })
+    },
+
+    notice: function(){
+      wx.navigateTo({
+        url: '../me/notice',
+        success: function (res) {
+          // success
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        }
+      })
+    },
+    uploadvideo: function(){
+      //调转到视频页面
+      wx.navigateTo({
+        url: '../add/add',
+        success: function (res) {
+          // success
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        }
+      })
     },
 
     myvideo:function(){
@@ -125,5 +211,11 @@ Page({
             desc: 'desc', // 分享描述
             path: 'path' // 分享路径
         }
-    }
+    },
+
+    bindKeyInput: function (e) {
+      this.setData({
+        word: e.detail.value
+      })
+    },
 })
