@@ -67,5 +67,22 @@ Page({
             desc: 'desc', // 分享描述
             path: 'path' // 分享路径
         }
+    },
+    goSearch: function () {
+      console.log("goSearch")
+      // 跳转查询页面
+      wx.navigateTo({
+        url: '../search/search',
+        success: function (res) {
+          // success
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        }
+      })
     }
+
 })

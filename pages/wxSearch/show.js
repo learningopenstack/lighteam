@@ -2,29 +2,26 @@
 var app = getApp()
 Page({
   data: {
-    zujiData:[],
+    showData: [],
+    size : 0,
   },
   onLoad: function (options) {
     var that = this;
-    var url = app.config.gethistoryUrl;
-    var params = { userid: app.globalData.login.Userid, key: app.globalData.login.Key };
-    app.wxRequest.getRequest(url, params).
-      then(res => {
-        console.log("history videos: ", res.data.data)
-        that.setData({
-          zujiData: res.data.data,
-        })
+    if(app.globalData.mysearchvideos==null){
+      that.setData({
+        size: 0
       })
-      .catch(res => {
-        console.log('错误信息', res)
+    }else{
+      that.setData({
+        size: app.globalData.mysearchvideos.length
       })
-      .finally(function (res) {
-        console.log('finally~')
-        wx.hideLoading();
-      })
+    }
+    that.setData({
+      showData: app.globalData.mysearchvideos
+    })
   },
 
-  openVideo: function(e){
+  openVideo: function (e) {
     console.log('openvideo;')
     console.log(e)
     console.log("end")
@@ -44,4 +41,5 @@ Page({
       }
     })
   }
+
 })

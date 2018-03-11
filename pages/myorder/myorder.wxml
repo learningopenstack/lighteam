@@ -1,55 +1,58 @@
 <import src="../template/search.wxml"></import>
 <view class="container">
-  <template is="search"></template>
 
-<view  style="margin-top:75rpx; width: 100%;  ">
-  <scroll-view class="meal-list" scroll-x scroll-with-animation>
-    <view wx:for="{{navbar}}" class="{{currentTab===index ? 'selected-meal':'meal-item'}}" bindtap="navbarTap" data-idx="{{index}}" wx:key="unique">{{item["Name"]}}</view>
-  </scroll-view>
-</view>
-<!--<view>  
+  <!--
+  <template is="search"></template>
+  -->
+
+  <view style="margin-top:0rpx; width: 100%;  ">
+    <scroll-view class="meal-list" scroll-x scroll-with-animation>
+      <view wx:for="{{navbar}}" class="{{currentTab===index ? 'selected-meal':'meal-item'}}" bindtap="navbarTap" data-idx="{{index}}" wx:key="unique">{{item["Name"]}}</view>
+    </scroll-view>
+  </view>
+  <!--<view>  
   {{show[currentTab]}} 
 </view> -->
 
-  <view wx:if="{{showBox}}" class="wrap" >
-      <view class=" myorder-box">
-        <view class="myorder-box-title">
-          <view class="theme">
-            {{ currenttopic}}
-          </view>
-
-          <view class="add-video" bindtap="addvideo">
-            <image class="add" src="/image/add_hui.png"></image>
-          </view>
+  <view wx:if="{{showBox}}" class="wrap">
+    <view class=" myorder-box">
+      <view class="myorder-box-title">
+        <view class="theme">
+          {{ currenttopic}}
         </view>
-        <view wx:for="{{info}}" wx:for-item="item2" wx:key="id">
-          <!--  <view class="myorder-box-video" bindtap="waitplay"> -->
-          <view class="myorder-box-video">
-            <view class="myorder-box-video-img">
-              <video id="myVideo" class="top-video" src="https://cephcp.ztgame.com.cn/lighteam/upload/video/{{item2.Vname}}" binderror="videoErrorCallback" controls></video>
 
-            </view>
-            <view class="myorder-box-video-txt">
-              <view>{{item2.Vtitle}}</view>
+        <view class="add-video" bindtap="addvideo">
+          <image class="add" src="/image/add_hui.png"></image>
+        </view>
+      </view>
+      <view wx:for="{{info}}" wx:for-item="item2" wx:key="id">
+        <!--  <view class="myorder-box-video" bindtap="waitplay"> -->
+        <view class="myorder-box-video">
+          <view class="myorder-box-video-img">
+            <video id="myVideo" class="top-video" src="https://cephcp.ztgame.com.cn/lighteam/upload/video/{{item2.Vname}}" binderror="videoErrorCallback" controls></video>
 
-              <view class="myorder-box-video-txt-right">
-                <view>
-                  <image class="zan" src="/image/zan.png" />
-                  <text>{{item2.Vzan}}</text>
-                </view>
-                <view>
-                  <image class="see" src="/image/see.png" />
-                  <text>{{item2.Vview}}</text>
-                </view>
+          </view>
+          <view class="myorder-box-video-txt">
+            <view>{{item2.Vtitle}}</view>
+
+            <view class="myorder-box-video-txt-right">
+              <view>
+                <image class="zan" src="/image/zan.png" />
+                <text>{{item2.Vzan}}</text>
               </view>
-
+              <view>
+                <image class="see" src="/image/see.png" />
+                <text>{{item2.Vview}}</text>
+              </view>
             </view>
-            <view class="myorder-box-video-txt">{{item2.Vtitle}} </view>
 
           </view>
-        </view>
+          <view class="myorder-box-video-txt">{{item2.Vtitle}} </view>
 
-        <!--
+        </view>
+      </view>
+
+      <!--
             <view class="myorder-box-video">
                 <view class="myorder-box-video-img">
                     <image src="/image/video.jpg" mode="aspectFill" lazy-load='true' style="width:750rpx;height:340rpx;" />
@@ -70,12 +73,19 @@
                 </view>
             </view>
           -->
-      </view>
-      <view class="more-txt wrap">
+    </view>
+    <view class="more-txt wrap">
+      <!--
         <view>
           更多>>
         </view>
-      </view>
+      -->
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view>
+          下一页>>
+        </view>
+      </picker>
+    </view>
 
     <!--
         <view class=" myorder-box">

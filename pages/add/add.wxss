@@ -44,7 +44,19 @@ page {
 } 
 
 .inputView{
-    border:  2px solid green;
+    border:  2px solid #10BBCF;
     margin-right: 10px;
     margin-top: 5px;
+}
+
+.allview{
+  flex-direction:row;
+  display:flex;
+  font-size: 26rpx;
+  margin-left: 20rpx;
+}
+
+.addtitle{
+  font-size: 26rpx;
+  margin-left: 20rpx; 
 }

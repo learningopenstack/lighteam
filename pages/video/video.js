@@ -5,10 +5,7 @@ Page({
         imgs: [],
         content: '',
         valLen: 0,
-        testImgs: ['https://cephcp.ztgame.com.cn/lighteam/roll1.jpeg',
-          'https://cephcp.ztgame.com.cn/lighteam/roll2.jpeg',
-          'https://cephcp.ztgame.com.cn/lighteam/roll3.jpeg',
-          'https://cephcp.ztgame.com.cn/lighteam/roll4.jpeg',]
+        testImgs: []
     },
     onLoad: function(options) {
         // 生命周期函数--监听页面加载
@@ -20,6 +17,8 @@ Page({
           vid: options.id,
           vurl: app.globalData.videourl + options.name,
           vtitle:options.title,
+          vview: options.view,
+          vzan: options.zan,
         })
 
         //获取用户视频评论
@@ -28,10 +27,40 @@ Page({
         app.wxRequest.getRequest(url, params).
           then(res => {
             console.log('视频播放页面获取评论列表', res);
+            /*
+            var commentImgs = new Array()
+            commentImgs = res.data.data.Info.Pic
+            console.log("commentimgs:", commentImgs)
+            for (var i=0; i<res.data.data.Info.Pic.length; i++){
+              console.log("pic: ", res.data.data.Info.Pic[i] )
+              commentImgs.push('https://cephcp.ztgame.com.cn/lighteam/upload/pic/' + res.data.data.Info.Pic[i])
+            }
+            console.log("commentimgs:", commentImgs)
+            */
             that.setData({
               allcomment: res.data.data.All,
               Info: res.data.data.Info
             })
+            
+            var comments = new Array()
+            comments =  that.data.Info
+            for (var i=0; i<that.data.Info.length; i++){
+              console.log("Pic:", comments[i].Pic)
+              for(var j=0; j<that.data.Info[i].Pic.length; j++){
+                console.log("pic: ", that.data.Info[i].Pic[j], "j=", j)
+                /*
+                if(j==0){
+                  comments[i].Pic.splice(0, comments[i].Pic.length) 
+                }*/
+                
+                comments[i].Pic[j] = 'https://cephcp.ztgame.com.cn/lighteam/upload/pic/' + that.data.Info[i].Pic[j]
+              }
+            }
+            console.log("comments: ", comments)
+            that.setData({
+              Info: comments
+            })
+            console.log("Info: ", that.data.Info)
           })
           .catch(res => {
             console.log('错误信息', res)
@@ -40,6 +69,29 @@ Page({
             console.log('finally~')
             wx.hideLoading();
           })
+    },
+
+    deepClone: function (data) {
+      var type = getType(data);
+      var obj;
+      if (type === 'array') {
+        obj = [];
+      } else if (type === 'object') {
+        obj = {};
+      } else {
+        //不再具有下一层次
+        return data;
+      }
+      if (type === 'array') {
+        for (var i = 0, len = data.length; i < len; i++) {
+          obj.push(deepClone(data[i]));
+        }
+      } else if (type === 'object') {
+        for (var key in data) {
+          obj[key] = deepClone(data[key]);
+        }
+      }
+      return obj;
     },
     imageLoad: function(e) {
         var that = this;
@@ -173,6 +225,7 @@ Page({
                     complete: function () { } //接口调用结束的回调函数  
                   })  
                 }
+                //需要刷新页面来展示最新评论
               },
               fail: function(res){
                 console.log('upload failed;')

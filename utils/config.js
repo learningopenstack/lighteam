@@ -11,6 +11,9 @@ export default {
     getTryHotTopicUrl: ip + 'lighteam/tryhottopic',
     getnoticeUrl: ip + 'lighteam/notice',
     gethistoryUrl: ip + 'lighteam/historys',
+    saveword: ip + 'lighteam/saveword',
+    hotsearch: ip + 'lighteam/hotsearch',
+    search: ip + 'lighteam/search',
 
     getClassType: ip + 'lighteam/topictype',
     getVideoComment: ip + 'lighteam/comment',

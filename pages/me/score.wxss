@@ -1,0 +1,40 @@
+.container{
+  display:flex; 
+  flex-direction:column; 
+  height:100%;
+  width: 100%;
+  background-size: 100% 100%;
+  background-repeat: round;
+}
+
+.top{
+  display: flex;
+  flex-direction: column;
+  height: 240rpx;
+  width:100%;
+  justify-content:center;
+  align-items: center;
+  /*background-color: #8B5A2B;*/
+  font-size: 24rpx;
+}
+
+.pic{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.block{
+  height: 960rpx;
+  width: 750rpx;
+
+  font-size: 24rpx;
+}
+
+.word{
+  margin-top: 100rpx;
+  height: 100%;
+  width: 100%;
+  margin-left: 40rpx;
+  font-size: 24rpx;
+}
+

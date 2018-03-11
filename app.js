@@ -12,6 +12,7 @@ App({
         userInfo: null,
         login: null,
         myvideos: null,
+        mysearchvideos: null,
         videourl:'https://cephcp.ztgame.com.cn/lighteam/upload/video/'
     },
 

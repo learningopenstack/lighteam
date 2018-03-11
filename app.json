@@ -1,6 +1,5 @@
 {
     "pages": [
-
         "pages/index/index",
         "pages/add/add",
         "pages/myorder/myorder",
@@ -10,7 +9,9 @@
         "pages/me/me",
         "pages/me/notice",
         "pages/me/score",
-        "pages/me/zuji"
+        "pages/me/zuji",
+        "pages/search/search",
+        "pages/wxSearch/show"
     ],
     "window": {
         "backgroundTextStyle": "light",

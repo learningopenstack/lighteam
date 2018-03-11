@@ -7,7 +7,8 @@
             <view class="search__icon search__active" style="width:40rpx;">
                 <icon type="search" size="13" color="#888" style="float:left;margin-right:20rpx;" bindtap="bindSearch" class='icon'></icon>
             </view>
-            <input class='ipt' value="{{value}}" class="ipt" bindinput="bindconfirm" confirm-type="done" bindblur="bindOver" placeholder="请输入搜索内容" />
+            <!--<input class='ipt' value="{{value}}" class="ipt" bindinput="bindconfirm" confirm-type="done" bindblur="bindOver" placeholder="请输入搜索内容" />-->
+             <input class='ipt' value="{{value}}" class="ipt" bindtap="goSearch" placeholder="请输入搜索内容" />
         </view>
     </view>
 </template>

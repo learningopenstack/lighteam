@@ -1,3 +1,17 @@
-<view>
-  积分
+<page>
+<view class="container" style="background-image:url('../../image/gift.jpg');">
+    <view class="top">
+      <image class="pic" src="/image/score3.png"/> 
+      <view> 我的积分：{{score}} </view>
+    </view>
+    <view class="block" >
+      <view class="word">
+      <text>
+      1、抓创新就是抓发展，谋创新就是谋未来\n
+      2、抓创新就是抓发展，谋创新就是谋未来\n
+      3、抓创新就是抓发展，谋创新就是谋未来\n
+    </text>
+    </view>
+    </view>
 </view>
+</page>

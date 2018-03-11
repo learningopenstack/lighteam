@@ -24,7 +24,7 @@ Page({
       console.log(item)
 
         wx.navigateTo({
-            url: '../video/video?id='+item.Id + '&name=' + item.Name + '&title=' + item.Title, 
+            url: '../video/video?id='+item.Id + '&name=' + item.Name + '&title=' + item.Title+'&view=' + item.View + '&zan='+item.Zan, 
             success: function(res) {
                 // success
             },
@@ -113,6 +113,22 @@ Page({
                 console.log('finally~')
                 wx.hideLoading();
             })
+    },
+    goSearch: function () {
+      console.log("goSearch")
+      // 跳转查询页面
+      wx.navigateTo({
+        url: '../search/search',
+        success: function (res) {
+          // success
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        }
+      })
     },
     tryhottopic: function() {
         var that = this;

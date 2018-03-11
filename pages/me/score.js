@@ -5,9 +5,11 @@ Page({
     score: 0
   },
   onLoad: function (options) {
+    /*
     var that = this;
     var url = app.config.getnoticeUrl;
-    var params = { userid: app.globalData.login.Userid, key: app.globalData.login.Key };
+    // var params = { userid: app.globalData.login.Userid, key: app.globalData.login.Key };
+    var params='';
     app.wxRequest.getRequest(url, params).
       then(res => {
         console.log('noticedata', res.data.data)
@@ -22,6 +24,6 @@ Page({
         console.log('finally~')
         wx.hideLoading();
       })
+      */
   },
-
 })

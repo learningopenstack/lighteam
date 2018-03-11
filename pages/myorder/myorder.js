@@ -8,6 +8,7 @@ Page({
         currenttopic: '',
         info: [],
         show: ['半月维保', '季度维保', '半年维保', "年度维保", '55', '66', '77'],
+        array: [1,2,3],
     },
     expendList: function() {
         var that = this;
@@ -85,11 +86,16 @@ Page({
 
             success: (res) => {
               console.log("获取主题详情视频返回：", res)
+              var all = new Array()
               if (res.data.Code == 200) {
+                for(var i=1; i<res.data.data.All/3+1; i++){
+                  all.push(i)
+                }
+
                 this.setData({
                   currenttopic: topicname,
                   info: res.data.data.Base,
-                  total: res.data.data.All
+                  array: all
                 })
               } else {
                 console.log('request topicinfo error')
@@ -107,6 +113,51 @@ Page({
           console.log('finally~')
           //wx.hideLoading();
         })
+    },
+
+    bindPickerChange: function(e){
+      var that = this
+      console.log("bindPickerChange:",e)
+      if(e.detail.value == 0){
+        return
+      }
+
+      var page =Number(e.detail.value) + 1
+      console.log("order: ", order)
+      //获取分类视频信息
+      var order = this.data.currentTab
+      var topicid = that.data.navbar[order].Id
+      var topicname = that.data.navbar[order].Name
+      console.log("topicid;", topicid)
+      //发送请求获取视频信息：
+      wx.request({
+        url: app.config.getClassesVideo,
+        data: {
+          topicid: topicid,
+          start: 3 * (page -1),
+          count: 3,
+        },
+        method: 'GET',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+
+        success: (res) => {
+          console.log("获取主题详情视频返回：", res)
+          var all = new Array()
+          if (res.data.Code == 200) {
+            this.setData({
+              currenttopic: topicname,
+              info: res.data.data.Base,
+            })
+          } else {
+            console.log('request topicinfo error')
+          }
+        },
+        fail: function (fail) {
+          console.log(fail)
+        },
+      })
     },
 
     addvideo: function() {

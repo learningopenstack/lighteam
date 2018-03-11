@@ -13,6 +13,35 @@ page {
     overflow-x: hidden;
 }
 
+.picview{
+  height:60rpx;
+  width:750rpx;
+  display: flex;
+  flex-direction: row;
+  border: 1rpx red solid;
+}
+
+.pic{
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  margin-right: 100rpx;
+  justify-content: flex-end;
+}
+.vview{
+  height: 100%;
+  width: 20%;
+  margin-right: 30rpx;
+}
+
+.vzan{
+  height: 100%;
+  width: 20%;
+  margin-right: 5rpx;
+}
+
+
 .wrap {
     width: 100%;
 }
@@ -139,5 +168,13 @@ page {
     height: 2rpx;
     background-color: #c7c7c7;
     margin-top: 15rpx;
-    width:150%;
+    width:680rpx;
+}
+
+.list-content-one {
+    color: #000;
+    font-size: 26rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

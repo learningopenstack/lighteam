@@ -22,7 +22,7 @@ Page({
         },{
           id: 4,
           name: 'article',
-          url: '/image/article.png',
+          url: '/image/upload.png',
           txt: '上传入口'
         }, {
             id: 5,
@@ -60,8 +60,8 @@ Page({
     },
     onUnload: function() {
         // 生命周期函数--监听页面卸载
-
     },
+
     onPullDownRefresh: function() {
         // 页面相关事件处理函数--监听用户下拉动作
 
@@ -214,8 +214,25 @@ Page({
     },
 
     bindKeyInput: function (e) {
-      this.setData({
+      var that = this
+      that.setData({
         word: e.detail.value
       })
+      var that = this
+      var url = app.config.saveword;
+      var params = { userid: app.globalData.login.Userid, key: app.globalData.login.Key, word: that.data.word };
+      app.wxRequest.postRequest(url, params).
+        then(res => {
+          console.log('提交说说：', res);
+        })
+        .catch(res => {
+          console.log('错误信息', res)
+          return false;
+        })
+        .finally(function (res) {
+          console.log('finally~')
+        }) 
+        console.log("now word :", that.data.word)
+        app.globalData.login.Words = that.data.word
     },
 })
