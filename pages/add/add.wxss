@@ -56,6 +56,20 @@ page {
   margin-left: 20rpx;
 }
 
+.allview2{
+  flex-direction:column;
+  display:flex;
+  font-size: 26rpx;
+  margin-left: 20rpx;
+}
+
+.checkbox{
+  flex-direction: row;
+  display: flex;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+}
+
 .addtitle{
   font-size: 26rpx;
   margin-left: 20rpx; 

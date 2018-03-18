@@ -1,10 +1,11 @@
-<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" range-key="Name">
+<picker bindchange="bindPickerChange" range="{{array}}" value="{{index}}"  range-key="Name">
   <view class="allview">
     <view>当前选择视频类型：</view>
     <view style="border-bottom:  2px solid #10BBCF;width:300rpx">{{array[index].Name}}
     </view>
   </view>
 </picker>
+
 <view class="allview">
   <view>请输入视频的名字：</view>
   <view style="border-bottom:  2px solid #10BBCF;">
@@ -12,6 +13,19 @@
     <input maxlength="8" bindinput="nameInput" />
   </view>
 </view>
+
+<view class="allview2">
+  <view>选择视频印象：</view>
+  <checkbox-group bindchange="checkboxChange">
+    <label  wx:for="{{flags}}">
+      <view class="checkbox">
+      <checkbox value="{{item}}" checked="{{item.checked}}" />{{item}}
+      </view>
+      <br/>
+    </label>
+  </checkbox-group>
+</view>
+
 <view class="addtitle">请描述下视频：</view>
 <view class="inputView">
   <!--<textarea placeholder="给视频来些描述哈～" maxlength="32" bindinput="newsInput" />-->

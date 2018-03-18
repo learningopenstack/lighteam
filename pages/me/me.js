@@ -32,7 +32,8 @@ Page({
         }, {
           　id: 6,
             name: 'about',
-            url: '/image/about.png',
+            //url: '/image/about.png',
+            url:'/image/about.jpg',
             txt: '关于悦町'
         }]
     },

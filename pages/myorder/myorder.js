@@ -9,6 +9,8 @@ Page({
         info: [],
         show: ['半月维保', '季度维保', '半年维保', "年度维保", '55', '66', '77'],
         array: [1,2,3],
+        flags:[],
+        currentTab2: 0,
     },
     expendList: function() {
         var that = this;
@@ -59,6 +61,7 @@ Page({
     getTypes: function () {
       var that = this
       var url = app.config.getClassType;
+
       var params = {};
       app.wxRequest.getRequest(url, params).
         then(res => {
@@ -66,10 +69,16 @@ Page({
           that.setData({
             navbar: res.data.data
           })
+
           //获取分类视频信息
           var order = this.data.currentTab
           var topicid = that.data.navbar[order].Id
           var topicname = that.data.navbar[order].Name
+          var flags = that.data.navbar[order].Flags
+          that.setData({
+            flags: flags
+          })
+          console.log("flags:", flags)
           console.log("topicid;", topicid)
           //发送请求获取视频信息：
           wx.request({
@@ -222,6 +231,48 @@ Page({
             path: 'path' // 分享路径
         }
     },
+
+    navbarTap2: function (e) {
+      var that = this;
+      that.setData({
+        currentTab2: e.currentTarget.dataset.idx,
+      })
+      var order = that.data.currentTab
+      var topicid = that.data.navbar[order].Id
+
+      //发送请求
+      var infos = new Array()
+      //发送请求获取视频信息：
+      wx.request({
+        url: app.config.getClassesVideo,
+        data: {
+          topicid: topicid,
+          flag: that.data.flags[that.data.currentTab2],
+          start: 1,
+          count: 3,
+        },
+        method: 'GET',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+
+        success: (res) => {
+          console.log("获取主题详情视频返回：", res)
+          if (res.data.Code == 200) {
+            this.setData({
+              info: res.data.data.Base,
+              total: res.data.data.All
+            })
+          } else {
+            console.log('request topicinfo error')
+          }
+        },
+        fail: function (fail) {
+          console.log(fail)
+        },
+      })
+    },
+
     //响应点击导航栏
     navbarTap: function (e) {
       var that = this;
@@ -231,6 +282,10 @@ Page({
       var order = this.data.currentTab
       var topicid = that.data.navbar[order].Id
       var topicname = that.data.navbar[order].Name
+      var flags = that.data.navbar[order].Flags
+      that.setData({
+        flags: flags
+      })
       console.log("topicid;", topicid)
       var infos = new Array()
       //发送请求获取视频信息：
@@ -238,6 +293,7 @@ Page({
         url: app.config.getClassesVideo,
         data: {
           topicid: topicid,
+          flag: that.data.flags[0],
           start: 1,
           count: 3,
         },

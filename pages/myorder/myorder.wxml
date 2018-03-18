@@ -9,7 +9,11 @@
     <scroll-view class="meal-list" scroll-x scroll-with-animation>
       <view wx:for="{{navbar}}" class="{{currentTab===index ? 'selected-meal':'meal-item'}}" bindtap="navbarTap" data-idx="{{index}}" wx:key="unique">{{item["Name"]}}</view>
     </scroll-view>
+    <scroll-view class="meal-list2" scroll-x scroll-with-animation>
+      <view wx:for="{{flags}}"  class="{{currentTab2===index ? 'selected-meal2':'meal-item2'}}" bindtap="navbarTap2" data-idx="{{index}}" wx:key="unique">{{item}}</view>
+    </scroll-view>
   </view>
+
   <!--<view>  
   {{show[currentTab]}} 
 </view> -->
