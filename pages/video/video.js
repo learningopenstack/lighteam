@@ -5,14 +5,23 @@ Page({
         imgs: [],
         content: '',
         valLen: 0,
-        testImgs: []
+        admin: false,
+        testImgs: [],
     },
     onLoad: function(options) {
         // 生命周期函数--监听页面加载
         //获取code 
         var that = this
-        console.log(app.globalData)
-        console.log("globalData")
+        //console.log(app.globalData)
+        console.log("globalData:", app.globalData)
+        if(app.globalData.login.Role==1){
+          that.setData({
+            admin: true
+          })
+        }
+
+
+        console.log("options", options)
         that.setData({
           vid: options.id,
           vurl: app.globalData.videourl + options.name,
@@ -20,10 +29,18 @@ Page({
           vview: options.view,
           vzan: options.zan,
         })
+        wx.setNavigationBarTitle({ title: options.title })
+        if (app.globalData.zanmap.has(that.data.vid)) {
+          if (app.globalData.zanmap.get(that.data.vid)) { //已点过赞了；
+            that.setData({
+              zan: true,
+            })
+          }
+        }
 
         //获取用户视频评论
         var url = app.config.getVideoComment;
-        var params = { start: 1, count: 3, videoid: options.id};
+        var params = { userid: app.globalData.login.Userid, start: 1, count: 3, videoid: options.id};
         app.wxRequest.getRequest(url, params).
           then(res => {
             console.log('视频播放页面获取评论列表', res);
@@ -69,6 +86,88 @@ Page({
             console.log('finally~')
             wx.hideLoading();
           })
+    },
+
+    addzan:function(e){
+      var that = this
+      console.log("addzan :", e, " zanmap:", app.globalData.zanmap)
+      if(app.globalData.zanmap.has(that.data.vid)){
+        if(app.globalData.zanmap.get(that.data.vid)){ //已点过赞了；
+          app.globalData.zanmap.set(that.data.vid, false)
+          that.setData({
+            vzan: Number(that.data.vzan) - 1,
+            zan: false,
+          })
+        }else{
+          app.globalData.zanmap.set(that.data.vid, true)
+          that.setData({
+            zan: true,
+            vzan: Number(that.data.vzan) + 1,
+          })
+        } 
+      }else{
+        app.globalData.zanmap.set(that.data.vid, true)
+        app.globalData.zanmap[that.data.vid] = true;
+        that.setData({
+          zan: true,
+          vzan: Number(that.data.vzan) + 1,
+        })
+      }
+      wx.request({
+        url: app.config.addzan,
+        data: {
+          userid: app.globalData.login.Userid,
+          key: app.globalData.login.Key,
+          vid: that.data.vid,
+          zan: that.data.vzan,
+        },
+        method:'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        success: (res) => {
+          console.log("admin获取视频总数，返回：", res)
+          if (res.data.Code == 200) {
+            console.log("res:", res)
+          } else {
+            console.log('admin request user error')
+          }
+        },
+        fail: function (fail) {
+          console.log(fail)
+        },
+      })
+    },
+
+    del: function(e){
+      var that = this
+      console.log("del video:", e)
+      wx.request({
+        url: app.config.videodel,
+        data: {
+          userid: app.globalData.login.Userid,
+          key: app.globalData.login.Key,
+          vid: that.data.vid,
+        },
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        success: (res) => {
+          console.log("admin获取视频总数，返回：", res)
+          if (res.data.Code == 200) {
+            console.log("res:", res)
+            wx.navigateBack({//返回
+              delta: 1
+            })
+          } else {
+            console.log('admin request user error')
+          }
+        },
+        fail: function (fail) {
+          console.log(fail)
+        },
+      })
     },
 
     deepClone: function (data) {
@@ -247,11 +346,6 @@ Page({
             wx.hideLoading();
           })
       console.log("comment info:")
-      console.log(that.data.content)
-      console.log(that.data.valLen)
-      console.log(that.data.arr)
-      console.log(that.data.imgs)
-      console.log("imgs info end")
     },
     onReady: function() {
         // 生命周期函数--监听页面初次渲染完成
@@ -278,13 +372,13 @@ Page({
         // 页面上拉触底事件的处理函数
 
     },
-    onShareAppMessage: function() {
-        // 用户点击右上角分享
-        return {
-            title: 'title', // 分享标题
-            desc: 'desc', // 分享描述
-            path: 'path' // 分享路径
-        }
+    onShareAppMessage: function () {
+      // 用户点击右上角分享
+      return {
+        title: '有材- 孩子们的分享社区', // 分享标题
+        desc: 'desc', // 分享描述
+        path: '/pages/index/index' // 分享路径
+      }
     },
     previewImage: function (e) {
       var that = this,

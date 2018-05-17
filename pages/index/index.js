@@ -58,6 +58,21 @@ Page({
         })
     },
 
+    jointopic: function(e){
+      console.log('event:', e)
+      var name = e.currentTarget.dataset.name.Name
+      var topicid  =  e.currentTarget.dataset.name.Id
+      wx.navigateTo({
+        url: "../../pages/topicdetail/detail?name="+name+"&topicid="+topicid,
+      //接口调用成功的回调方法
+        fuccess: function () { },
+      //接口调用失败的回调方法
+       fail:function (e) { console.log("failed; ", e) },
+      //接口调用无论成功或者失败的回调方法
+       complete:function () { }
+   })
+    },
+
     tryhotvideo: function() {
         var that = this;
         wx.showLoading({
@@ -133,12 +148,14 @@ Page({
     tryhottopic: function() {
         var that = this;
         that.setData({
+            change: no,
             hottopicLoading: true,
             hottopicdisabled: true
         })
         wx.showLoading({
             title: '努力加载中...',
         })
+
         var url = app.config.getTryHotTopicUrl;
         var params = {};
         app.wxRequest.getRequest(url, params).
@@ -238,11 +255,12 @@ Page({
 
     onReady: function() {
         // 生命周期函数--监听页面初次渲染完成
-
     },
     onShow: function() {
         // 生命周期函数--监听页面显示
-
+      console.log("=============")
+      this.hotvideo();
+      console.log("========ret==========")
     },
     onHide: function() {
         // 生命周期函数--监听页面隐藏
@@ -263,9 +281,9 @@ Page({
     onShareAppMessage: function() {
         // 用户点击右上角分享
         return {
-            title: 'title', // 分享标题
+            title: '有材- 孩子们的分享社区', // 分享标题
             desc: 'desc', // 分享描述
-            path: 'path' // 分享路径
+            path: '/pages/index/index' // 分享路径
         }
     }
 })

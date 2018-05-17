@@ -10,13 +10,20 @@
         "pages/me/notice",
         "pages/me/score",
         "pages/me/zuji",
+        "pages/me/usermanage",
         "pages/search/search",
+        "pages/me/showvideo",
+        "pages/me/videomanage",
+        "pages/me/commentmanage",
+        "pages/me/topicmanage",
+        "pages/topicdetail/detail",
+        "pages/videohistroy/videohistroy",
         "pages/wxSearch/show"
     ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#10BBCF",
-        "navigationBarTitleText": "Hello Buddy",
+        "navigationBarTitleText": "有材",
         "navigationBarTextStyle": "white",
         "enablePullDownRefresh": false
     },

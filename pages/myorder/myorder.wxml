@@ -29,18 +29,25 @@
           <image class="add" src="/image/add_hui.png"></image>
         </view>
       </view>
-      <view wx:for="{{info}}" wx:for-item="item2" wx:key="id">
+      <!--
+      <view wx:if ="{{count > 3}}" class="novideo"> 暂无视频～ </view>
+      -->
+      <view wx:for="{{info}}" wx:for-item="item2" wx:key="*this">
         <!--  <view class="myorder-box-video" bindtap="waitplay"> -->
         <view class="myorder-box-video">
           <view class="myorder-box-video-img">
             <video id="myVideo" class="top-video" src="https://cephcp.ztgame.com.cn/lighteam/upload/video/{{item2.Vname}}" binderror="videoErrorCallback" controls></video>
 
           </view>
-          <view class="myorder-box-video-txt">
-            <view>{{item2.Vtitle}}</view>
+          <view class="myorder-box-video-txt" >
+            <view  bindtap="openVideo" data-Name="{{item2}}" >{{item2.Vtitle}}</view>
 
-            <view class="myorder-box-video-txt-right">
-              <view>
+            <view class="myorder-box-video-txt-right" >
+              <view wx:if = "{{item2.Vsecond==0}}" bindtap="addzan" data-item="{{index}}">
+                <image class="zan" src="/image/nozan.png" />
+                <text>{{item2.Vzan}}</text>
+              </view>
+              <view wx:else bindtap="addzan" data-item="{{index}}">
                 <image class="zan" src="/image/zan.png" />
                 <text>{{item2.Vzan}}</text>
               </view>
@@ -51,7 +58,9 @@
             </view>
 
           </view>
+          <!--
           <view class="myorder-box-video-txt">{{item2.Vtitle}} </view>
+          -->
 
         </view>
       </view>
@@ -78,7 +87,7 @@
             </view>
           -->
     </view>
-    <view class="more-txt wrap">
+    <view wx:if ="{{total > 3}}" class="more-txt wrap">
       <!--
         <view>
           更多>>

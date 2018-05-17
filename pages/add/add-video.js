@@ -79,8 +79,13 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function() {
-
+    onShareAppMessage: function () {
+      // 用户点击右上角分享
+      return {
+        title: '有材- 孩子们的分享社区', // 分享标题
+        desc: 'desc', // 分享描述
+        path: '/pages/index/index' // 分享路径
+      }
     },
 
 

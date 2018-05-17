@@ -101,7 +101,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    // 用户点击右上角分享
+    return {
+      title: '有材- 孩子们的分享社区', // 分享标题
+      desc: 'desc', // 分享描述
+      path: '/pages/index/index' // 分享路径
+    }
   },
   /*
    *获取类型
@@ -148,8 +153,9 @@ Page({
    * 选择 / 拍摄视频
    * @author abei<abei@nai8.me>
    */
-  addVideo: function () {
+  addVideo: function (e) {
     var that = this
+    console.log("addVideo")
     wx.chooseVideo({
       sourceType: ['album', 'camera'],
       maxDuration: 60,
@@ -166,8 +172,23 @@ Page({
    * 上传图片
    */
   chooseImage: function () {
+    console.log("chooseImage upload now")
     var that = this;
     var items = that.data.photos;
+    if (items.length ==1){
+      console.log("chooseImage:", items)
+      wx.showToast({
+        title: '图片已添加',  //标题  
+        icon: 'success',  //图标，支持"success"、"loading"  
+        //image: '../image/img.png',  //自定义图标的本地路径，image 的优先级高于 icon  
+        duration: 2000, //提示的延迟时间，单位毫秒，默认：1500  
+        mask: true,  //是否显示透明蒙层，防止触摸穿透，默认：false  
+        success: function () { }, //接口调用成功的回调函数  
+        fail: function () { },  //接口调用失败的回调函数  
+        complete: function () { } //接口调用结束的回调函数  
+      }) 
+      return
+    }
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -253,7 +274,7 @@ Page({
     //获取key
     var url = app.config.getuploadkey;
     console.log(app.config)
-    var params = { userid: app.globalData.login.Userid, key: app.globalData.login.Key, topicid: that.data.topicid, title: that.data.title, flag: that.data.chooseflags, second: that.data.second };
+    var params = { userid: app.globalData.login.Userid, key: app.globalData.login.Key, topicid: that.data.array[that.data.index].Id, title: that.data.title, flag: that.data.chooseflags, second: that.data.second };
 
     //var params = { userid: app.globalData.login.Userid, key: app.globalData.login.Key, topicid: 3, title: "title", second: "second" };
     app.wxRequest.postRequest(url, params).

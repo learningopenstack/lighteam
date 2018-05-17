@@ -13,6 +13,7 @@ App({
         login: null,
         myvideos: null,
         mysearchvideos: null,
+        zanmap: new Map(),
         videourl:'https://cephcp.ztgame.com.cn/lighteam/upload/video/'
     },
 

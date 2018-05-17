@@ -11,6 +11,7 @@ Page({
         array: [1,2,3],
         flags:[],
         currentTab2: 0,
+        count: 0,
     },
     expendList: function() {
         var that = this;
@@ -58,6 +59,27 @@ Page({
         wx.hideLoading()
     },
 
+    openVideo: function (e) {
+      console.log('openvideo;')
+      console.log(e)
+      console.log("end")
+      var item = e.currentTarget.dataset.name;
+      console.log(item)
+
+      wx.navigateTo({
+        url: '../video/video?id=' + item.Vid + '&name=' + item.Vname + '&title=' + item.Vtitle + '&view=' + item.Vview + '&zan=' + item.Vzan,
+        success: function (res) {
+          // success
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        }
+      })
+    },
+
     getTypes: function () {
       var that = this
       var url = app.config.getClassType;
@@ -85,7 +107,8 @@ Page({
             url: app.config.getClassesVideo,
             data: {
               topicid: topicid,
-              start: 1,
+              flag: that.data.flags[order],
+              start: 0,
               count: 3,
             },
             method: 'GET',
@@ -94,7 +117,7 @@ Page({
             },
 
             success: (res) => {
-              console.log("获取主题详情视频返回：", res)
+              console.log("获取视频分类：", res)
               var all = new Array()
               if (res.data.Code == 200) {
                 for(var i=1; i<res.data.data.All/3+1; i++){
@@ -104,8 +127,10 @@ Page({
                 this.setData({
                   currenttopic: topicname,
                   info: res.data.data.Base,
-                  array: all
+                  array: all,
+                  count: all.length,
                 })
+                console.log("next page:", all)
               } else {
                 console.log('request topicinfo error')
               }
@@ -124,6 +149,63 @@ Page({
         })
     },
 
+    addzan: function (e) {
+      var that = this
+      console.log("addzan :", e)
+      var item = e.currentTarget.dataset.item
+      var Info = that.data.info 
+      if (app.globalData.zanmap.has(Info[item].Vid)) {
+        if (app.globalData.zanmap.get(Info[item].Vid)) { //已点过赞了；
+          app.globalData.zanmap.set(Info[item].Vid, false)
+          
+          Info[item].Vzan = Info[item].Vzan - 1
+          Info[item].Vsecond=0
+          that.setData({
+            info: Info
+          })
+        } else {
+          app.globalData.zanmap.set(Info[item].Vid, true)
+          Info[item].Vzan = Info[item].Vzan + 1
+          Info[item].Vsecond = 1
+          that.setData({
+            info: Info
+          })
+        }
+      } else {
+        app.globalData.zanmap.set(Info[item].Vid, true)
+        app.globalData.zanmap[Info[item].Vid] = true;
+        Info[item].Vzan = Info[item].Vzan + 1
+        Info[item].Vsecond = 1
+        that.setData({
+          info: Info
+        })
+      }
+      wx.request({
+        url: app.config.addzan,
+        data: {
+          userid: app.globalData.login.Userid,
+          key: app.globalData.login.Key,
+          vid: that.data.info[item].Vid,
+          zan: that.data.info[item].Vzan,
+        },
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        success: (res) => {
+          console.log("admin获取视频总数，返回：", res)
+          if (res.data.Code == 200) {
+            console.log("res:", res)
+          } else {
+            console.log('admin request user error')
+          }
+        },
+        fail: function (fail) {
+          console.log(fail)
+        },
+      })
+    },
+
     bindPickerChange: function(e){
       var that = this
       console.log("bindPickerChange:",e)
@@ -137,6 +219,7 @@ Page({
       var order = this.data.currentTab
       var topicid = that.data.navbar[order].Id
       var topicname = that.data.navbar[order].Name
+
       console.log("topicid;", topicid)
       //发送请求获取视频信息：
       wx.request({
@@ -144,6 +227,7 @@ Page({
         data: {
           topicid: topicid,
           start: 3 * (page -1),
+          flag: that.data.flags[that.data.currentTab2],
           count: 3,
         },
         method: 'GET',
@@ -152,12 +236,19 @@ Page({
         },
 
         success: (res) => {
-          console.log("获取主题详情视频返回：", res)
+          console.log("bindPikerChanger：", res)
           var all = new Array()
+
           if (res.data.Code == 200) {
+            for (var i = 1; i < res.data.data.All / 3 + 1; i++) {
+              all.push(i)
+            }
+
             this.setData({
               currenttopic: topicname,
               info: res.data.data.Base,
+              array: all,
+              total: all.length,
             })
           } else {
             console.log('request topicinfo error')
@@ -248,7 +339,7 @@ Page({
         data: {
           topicid: topicid,
           flag: that.data.flags[that.data.currentTab2],
-          start: 1,
+          start: 0,
           count: 3,
         },
         method: 'GET',
@@ -257,12 +348,19 @@ Page({
         },
 
         success: (res) => {
-          console.log("获取主题详情视频返回：", res)
+          console.log("navbarTap2 return：", res)
           if (res.data.Code == 200) {
+            var all = new Array()
+            for (var i = 1; i < res.data.data.All / 3 + 1; i++) {
+              all.push(i)
+            }
+
             this.setData({
               info: res.data.data.Base,
-              total: res.data.data.All
+              array: all,
+              total: res.data.data.All,
             })
+            console.log("array: ", all, " total:", all.length)
           } else {
             console.log('request topicinfo error')
           }
@@ -294,7 +392,7 @@ Page({
         data: {
           topicid: topicid,
           flag: that.data.flags[0],
-          start: 1,
+          start: 0,
           count: 3,
         },
         method: 'GET',
@@ -303,13 +401,19 @@ Page({
         },
 
         success: (res) => {
-          console.log("获取主题详情视频返回：", res)
+          console.log("navbarTap：", res)
           if (res.data.Code == 200) {
+            var all = new Array()
+            for (var i = 1; i < res.data.data.All / 3 + 1; i++) {
+              all.push(i)
+            }
+
             this.setData({
-              currenttopic: topicname,
               info: res.data.data.Base,
-              total: res.data.data.All
+              array: all,
+              total: res.data.data.All,
             })
+            console.log("array: ", all, " total:", all.length)
           } else {
             console.log('request topicinfo error')
           }

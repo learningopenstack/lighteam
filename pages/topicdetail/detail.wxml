@@ -1,0 +1,36 @@
+<view class="theme">
+  {{title}}
+</view>
+<view class="box">
+  <view class="video-item" wx:for="{{VideosData}}" bindtap="openVideo" data-Name="{{item}}">
+    <image class="listImg" mode="aspectFill" lazy-load='true' src="https://cephcp.ztgame.com.cn/lighteam/upload/pic/{{item.Pic}}" />
+    <view class="list-content">
+      <view class="list-content-one">
+        <view class="list-content-txt-two-info">
+          {{item.Title}}
+        </view>
+        <view>
+          <image class="see" src="/image/see.png" />
+          <text>{{item.View}}</text>
+        </view>
+      </view>
+      <view class="list-content-txt-two">
+        <view class="list-content-txt-two-info">
+          <!-- {{item.Second}} -->
+        </view>
+        <view>
+          <image class="zan" src="/image/zan.png" />
+          <text>{{item.Zan}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+ <view wx:if = "{{page}}" class="more-txt wrap">
+      <picker bindchange="bindPickerChange" value="{{page}}" range="{{array}}">
+        <view>
+          下一页>>
+        </view>
+      </picker>
+  </view>

@@ -17,7 +17,7 @@
         </view>
         <view class="list-content-txt-two">
           <view class="list-content-txt-two-info">
-            {{item.Second}}
+          <!-- {{item.Second}} -->
           </view>
           <view>
             <image class="zan" src="/image/zan.png" />

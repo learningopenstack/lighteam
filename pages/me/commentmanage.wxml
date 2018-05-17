@@ -1,0 +1,71 @@
+<view class="theme">
+  用户评论管理
+</view>
+
+<view class="wrap">
+  <view class="talking">
+    <view class="item-list" wx:for="{{Info}}">
+      <view class="list-content">
+        <image class="list-content-img" mode="aspectFill" lazy-load='true' src="{{item.Imgurl}}" />
+        <view class="list-content-txt">
+          <view class="list-content-txt-one">
+            {{item.Nickname}}
+          </view>
+        </view>
+        
+        <button  class="bu"  data-Id="{{item.Id}}" bindtap="del"> × </button>
+        <!--
+        <view class="bu"  data-Id="{{item.Id}}" bindtap="del"> × </view>
+        -->
+      </view>
+      <view class="list-content-yuyan">
+        {{item.Comment}}
+      </view>
+      <view class="imgs">
+        <view class="left">
+          <image class="img" wx:for="{{item.Pic}}" wx:for-item="item2" src="https://cephcp.ztgame.com.cn/lighteam/upload/pic/{{item2}}" data-index="{{index}}" data-images="{{item2}}" bindtap="previewImage"/>
+        </view>
+      </view>
+      <view class="line-heng">
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{page>1}}" class="more-txt wrap">
+  <picker bindchange="bindPickerChange" value="{{page}}" range="{{array}}">
+    <view>
+      下一页>>
+    </view>
+  </picker>
+</view>
+
+<!--toast消息框显示3秒，并绑定事件-->
+<toast hidden="{{hiddenToast}}" duration="1000" bindchange="toastHidden" >删除成功</toast>
+<!--
+<view class="box">
+  <view class="video-item" wx:for="{{zujiData}}" bindtap="openVideo" data-Name="{{item}}">
+    <image class="listImg" mode="aspectFill" lazy-load='true' src="https://cephcp.ztgame.com.cn/lighteam/pic/{{item.Pic}}" />
+    <view class="list-content">
+      <view class="list-content-one">
+        <view class="list-content-txt-two-info">
+          {{item.Title}}
+        </view>
+        <view>
+          <image class="see" src="/image/see.png" />
+          <text>{{item.View}}</text>
+        </view>
+      </view>
+      <view class="list-content-txt-two">
+        <view class="list-content-txt-two-info">
+          {{item.Second}}
+        </view>
+        <view>
+          <image class="zan" src="/image/zan.png" />
+          <text>{{item.Zan}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+-->

@@ -1,3 +1,31 @@
+<view class="all">
+<text class="title">有材说</text>
+<text decode="{{true}}" space="{{true}}">
+悦町专注于K-12 STEAM领域优质教育内容设计公司；其设计师团队由国内外STEAM专业学科和教育领域的专家学者组成，为企事业单位,公益组织,学校，提供K-12 STEAM领域优质教育内容的设计方案与咨询服务。教育内容的输出载体包括课程体系、教学设备、教学工具、影像、图书、音频等。
+</text>
+
+<text decode="{{true}}" space="{{true}}">
+有材社区——悦町为孩子们打造的专属交互学习分享空间，希望有材带给孩子们有趣有料的知识与乐趣。
+</text>
+
+<text decode="{{true}}" space="{{true}}">
+为了让大家可以有一个良好的可持续的公共网络空间，现拟定如下公约： \n
+</text>
 <view>
-  关于悦町
+  <view class="center">《绿色网络空间公约》</view>
+  <text>\n 为了我们共同的活力社群，我们承诺： \n </text>
+  <view style="margin-left: 20rpx;">
+  <view>● 传承分享的精神;\n</view>
+  <view>●	传播健康有益的内容; \n</view>
+  <view>●	鼓励相互学习交流; \n</view>
+  <view>●	使用文明的网络用语; \n</view>
+  <view>●	尊重肯定他人的作品和创意;\n</view> 
+  <view>●	监督社群内不文明不和谐的现象。\n</view>
+  </view>
+</view>
+<view style="margin-left: 430rpx;">
+<text>
+                              承诺人：有材分子 
+</text>
+</view>
 </view>

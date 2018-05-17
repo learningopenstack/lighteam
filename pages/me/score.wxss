@@ -1,10 +1,12 @@
 .container{
   display:flex; 
   flex-direction:column; 
-  height:100%;
-  width: 100%;
+  width: 750rpx;
+  height: auto;
+  position: absolute;
   background-size: 100% 100%;
-  background-repeat: round;
+  background-repeat: no-repeat;
+  /*border: 1rpx solid red;*/
 }
 
 .top{
@@ -16,6 +18,7 @@
   align-items: center;
   /*background-color: #8B5A2B;*/
   font-size: 24rpx;
+  /*border: 1rpx red solid;*/
 }
 
 .pic{
@@ -26,15 +29,16 @@
 .block{
   height: 960rpx;
   width: 750rpx;
-
   font-size: 24rpx;
+  /*border: 1rpx red solid;*/
 }
 
 .word{
-  margin-top: 100rpx;
+  margin-top: 360rpx;
   height: 100%;
   width: 100%;
-  margin-left: 40rpx;
+  margin-left: 100rpx;
   font-size: 24rpx;
+  color: #888;
 }
 

@@ -32,7 +32,7 @@
           </view>
 
         </view>
-        <view class="myorder-box-video-txt">{{item2.Second}} </view>
+        <view class="myorder-box-video-txt"><!-- {{item.Second}} --></view>
 
       </view>
     </view>

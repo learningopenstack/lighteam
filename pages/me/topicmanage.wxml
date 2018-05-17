@@ -1,0 +1,30 @@
+<view class="theme">
+  主题管理
+</view>
+<view class="box" wx:for="{{Info}}">
+  <view class="manage">
+    <text class="nick"> {{item.Name}}</text>
+    <text class="add" bindtap="addtopic"> + </text>
+    <text class="del" bindtap="deltopic" data-id="{{item.Id}}"> × </text>
+   
+  </view>
+  <view class="oneLine2"> </view>
+     <text wx:for="{{item.Flags}}" wx:for-item="item2" class="flag" bindtap="delflag" data-name="{{item2}}" >
+        <text class="flags"> {{item2}} </text> 
+        <!--
+        <text class="del2"> × </text>
+        --> 
+     </text>
+     <text class="add2" bindtap="addflag" data-Id="{{item.Id}}"> +... </text>
+  
+</view>
+
+<modal hidden="{{hiddenmodalput}}" title="请输入主题名" confirm-text="确认" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+    <input type='text' placeholder="请输入内容" value="{{inputvalue}}" bindinput="onBindInput"   auto-focus/>  
+</modal>  
+<modal hidden="{{hiddenmodalput2}}" title="请输入标记" confirm-text="确认" cancel-text="取消" bindcancel="cancel2" bindconfirm="confirm2"> 
+    <input type='text'placeholder="请输入内容" value="{{inputvalue}}" bindinput="onBindInput" auto-focus/>  
+</modal> 
+
+<!--toast消息框显示3秒，并绑定事件-->
+<toast hidden="{{hiddenToast}}" duration="3000" bindchange="toastHidden" >设置成功</toast>

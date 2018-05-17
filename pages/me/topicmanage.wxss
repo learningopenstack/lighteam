@@ -1,0 +1,75 @@
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.flag{
+  width:100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction:column;
+  margin-top: 10rpx;
+  justify-content: space-around;
+}
+.oneLine2 {
+    width: 120%;
+    height: 1px;
+    background-color: black;
+}
+
+.Flgs{
+  display: flex;
+  flex-wrap:nowrap;
+  flex-direction:column;
+  margin-top: 10rpx;
+  justify-content: space-around;
+}
+
+.flags {
+  height: 120rpx;
+  text-decoration:underline;
+  margin-top: 8rpx;
+  margin-left: 30rpx;
+  width: 280rpx;
+}
+
+
+.add2 {
+  font-size: 42rpx;
+  margin-top: 8rpx;
+  margin-left: 30rpx;
+}
+
+.manage{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+
+}
+
+.nick{
+  display: flex;
+  justify-content: center;
+  margin-top: -30rpx;
+  font-size: 34rpx;
+ 
+}
+
+.add{
+  margin-top: -40rpx;
+  margin-left: 240rpx;
+}
+
+.del{
+  margin-top: -40rpx;
+  margin-left: 240rpx;
+}
+
+/*
+.del2{
+  margin-left: 530rpx;
+  border: red 1px solid;
+}*/

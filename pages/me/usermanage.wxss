@@ -1,0 +1,45 @@
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    height: 75rpx;
+}
+
+.userimg {
+    margin-top:-12rpx;
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+}
+
+.bu{
+  margin-right: 20rpx;
+  background-color: #10BBCF;
+  height: 70rpx;
+}
+
+.oneLine2 {
+    width: 120%;
+    height: 1px;
+    background-color: black;
+}
+
+.nick{
+  margin-left: 30rpx;
+  margin-top: 20rpx;
+}
+
+
+.more-txt {
+    display: flex;
+    flex-direction: row;
+    color: #b6b6b6;
+    font-size: 30rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-bottom: 20rpx;
+}

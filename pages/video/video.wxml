@@ -1,7 +1,12 @@
 <view class="container">
   <view class="wrap">
-    <view class="theme">
-      {{vtitle}}
+    <view class="nowrap">
+      <!--
+      <view class="vtheme">
+        {{vtitle}}
+      </view>
+      <view wx:if="{{admin}}" class="vtheme" bindtap='del'> × </view>
+      -->
     </view>
     <!--
         <video id="myVideo" class="top-video" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
@@ -17,8 +22,10 @@
       <view>
         <image class="see" src="/image/see.png" />
         <text style="margin-left:10rpx;">{{vview}}</text>
-        <image class="see" style="margin-left:20rpx;" src="/image/zan.png" />
-        <text style="margin-left: 10rpx;margin-right: 20rpx;">{{vzan}}</text>
+        <image wx:if="{{zan}}" bindtap="addzan" class="see" style="margin-left:20rpx;" src="/image/zan.png" />
+        <image wx:else bindtap="addzan" class="see" style="margin-left:20rpx;" src="/image/nozan.png" />
+        <text bindtap="addzan" style="margin-left: 10rpx;margin-right: 30rpx;">{{vzan}}</text>
+        <image wx:if="{{admin}}" bindtap='del' class="see" style="margin-right: 30rpx;" src="/image/del.png" />
       </view>
   </view>
 

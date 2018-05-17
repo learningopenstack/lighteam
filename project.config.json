@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.7.2",
-	"appid": "wxd4298cf3aff9db35",
+	"appid": "wxb7dbafe0e145adb2",
 	"projectname": "lighteam",
 	"condition": {
 		"search": {
@@ -18,6 +18,9 @@
 		},
 		"conversation": {
 			"current": -1,
+			"list": []
+		},
+		"game": {
 			"list": []
 		},
 		"miniprogram": {

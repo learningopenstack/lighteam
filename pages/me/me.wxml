@@ -7,13 +7,29 @@
     <view class="login-user">
       <text class="username">{{userInfo.nickName}}</text>
       <view>
-        <input class="usertext" style="display:block"     bindinput="bindKeyInput" value="{{word}}" /> </view>
+        <input class="usertext" style="display:block" bindinput="bindKeyInput" value="{{word}}" /> </view>
       <!-- <text class="usertext" style="display:block" >{{word}}</text> -->
 
     </view>
   </view>
   <!-- 用户操作 -->
   <view class="user-action">
+    <!-- 管理员功能列表 -->
+    <view wx:if="{{role==1}}">
+    <view class="user-action-box" wx:for="{{AdminAction}}">
+      <!--
+          <view data-id="{{item.id}}" bindtap="action">
+          -->
+      <view class="user-action-box-left" data-id="{{item.id}}" bindtap="action">
+        <image class="user-action-box-left-icon" src="{{item.url}}"></image>
+        <view>
+          {{item.txt}}
+        </view>
+        <image class="arrows" src="/image/right.png"></image>
+
+      </view>
+    </view>
+    </view>
     <!-- 成员管理 -->
     <view class="user-action-box" wx:for="{{ActionList}}">
       <!--
@@ -27,13 +43,15 @@
         <image class="arrows" src="/image/right.png"></image>
 
       </view>
-      <!--
+    </view>
+
+
+    <!--
             <view  class="user-action-box-left" data-id="{{item.id}}" bindtap="action">>
                 <image class="arrows" src="/image/right.png"></image>
             </view>
           
           </view>
           -->
-    </view>
   </view>
 </view>

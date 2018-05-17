@@ -17,7 +17,7 @@
             <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:340rpx;">
                 <block wx:for="{{indexvideos}}">
                     <swiper-item>
-                        <image src="https://cephcp.ztgame.com.cn/lighteam/pic/{{item.Pic}}" mode="aspectFill" lazy-load='true' class="slide-image" style="width:750rpx;height:340rpx;" bindtap="openVideo" data-Name="{{item}}" />
+                        <image src="https://cephcp.ztgame.com.cn/lighteam/upload/pic/{{item.Pic}}" mode="aspectFill" lazy-load='true' class="slide-image" style="width:750rpx;height:340rpx;" bindtap="openVideo" data-Name="{{item}}" />
                     </swiper-item>
                 </block>
             </swiper>
@@ -28,7 +28,7 @@
         <view class="box">
             <view class="video-item" wx:for="{{HotVideoData}}" bindtap="openVideo" data-Name="{{item}}">
 
-                <image class="listImg" mode="aspectFill" lazy-load='true' src="https://cephcp.ztgame.com.cn/lighteam/pic/{{item.Pic}}" />
+                <image class="listImg" mode="aspectFill" lazy-load='true' src="https://cephcp.ztgame.com.cn/lighteam/upload/pic/{{item.Pic}}" />
                 <view class="list-content">
                     <view class="list-content-one">
                         <view class="list-content-txt-two-info">
@@ -41,7 +41,7 @@
                     </view>
                     <view class="list-content-txt-two">
                         <view class="list-content-txt-two-info">
-                            {{item.Second}}
+                            <!-- {{item.Second}} -->
                         </view>
                         <view>
                             <image class="zan" src="/image/zan.png" />
@@ -56,7 +56,7 @@
             热门专题
         </view>
         <view class="box">
-            <view class="video-item" wx:for="{{HotTopicData}}">
+            <view class="video-item" wx:for="{{HotTopicData}}" bindtap="jointopic" data-Name="{{item}}">
                 <view class="list-content">
                     <view class="list-content-one">{{item.Name}}</view>
                 </view>
@@ -66,13 +66,13 @@
         </view>
     </view>
     <view wx:else>
-        <view class="box swiper wrap">
-            <view class="video-item" wx:for="{{expendListData}}">
-                <view class="img-div">
+        <view class="box2 swiper wrap">
+            <view class="video-item" wx:for="{{expendListData}}" bindtap="jointopic" data-Name="{{item}}">
+                <view class="img-div2">
                     <view class="img-div-cover">
                         {{item.Name}}
                     </view>
-                    <image class="listImg-cover" mode="aspectFill" lazy-load='true' src="https://cephcp.ztgame.com.cn/lighteam/pic/{{item.Pic}}" />
+                    <image class="listImg-cover" mode="aspectFill" lazy-load='true' src="https://cephcp.ztgame.com.cn/lighteam/upload/pic/{{item.Pic}}" />
                 </view>
             </view>
         </view>

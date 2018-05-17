@@ -1,54 +1,63 @@
-<picker bindchange="bindPickerChange" range="{{array}}" value="{{index}}"  range-key="Name">
+<picker bindchange="bindPickerChange" range="{{array}}" value="{{index}}" range-key="Name">
   <view class="allview">
-    <view>当前选择视频类型：</view>
-    <view style="border-bottom:  2px solid #10BBCF;width:300rpx">{{array[index].Name}}
+    <view>● 滚动选择视频类型：</view>
+    <view style="border-bottom:  4rpx solid #10BBCF;width:300rpx; margin-top: 2rpx;">{{array[index].Name}}
     </view>
   </view>
 </picker>
 
-<view class="allview">
-  <view>请输入视频的名字：</view>
-  <view style="border-bottom:  2px solid #10BBCF;">
-    <!--<input placeholder="输入视频名称" maxlength="8" bindinput ="nameInput"/>-->
+<view class="allview3">
+  <view>● 请输入视频的名字：</view>
+  <view style="border-bottom: 4rpx solid #10BBCF;width:300rpx; margin-top: -20rpx;">
+    <!--
+    <input placeholder="输入视频名称" maxlength="8" bindinput ="nameInput"/>-->
     <input maxlength="8" bindinput="nameInput" />
   </view>
 </view>
 
 <view class="allview2">
-  <view>选择视频印象：</view>
+  <view>● 选择视频印象：</view>
   <checkbox-group bindchange="checkboxChange">
-    <label  wx:for="{{flags}}">
+    <label wx:for="{{flags}}">
       <view class="checkbox">
-      <checkbox value="{{item}}" checked="{{item.checked}}" />{{item}}
+        <checkbox value="{{item}}" checked="{{item.checked}}" />{{item}}
       </view>
       <br/>
     </label>
   </checkbox-group>
 </view>
 
-<view class="addtitle">请描述下视频：</view>
+<view class="addtitle">● 请描述下视频：</view>
 <view class="inputView">
-  <!--<textarea placeholder="给视频来些描述哈～" maxlength="32" bindinput="newsInput" />-->
+  <!--<textarea placeholder="给视频来些描述哈～" maxlength="32" bindinput="newsInput" />
   <textarea maxlength="32" bindinput="newsInput" />
+  -->
+  <input maxlength="32" bingdinput="newsInput"/>
 </view>
 
 <view class="photo-add">
-  <form bindsubmit="formSubmit">
-    <!-- <view class="desc">
+  <!-- <view class="desc">
         <textarea name="desc" placeholder="填写备注（可以不写）" />
-    </view> -->
-    <view class="add-video">
-      <text bindtap="addVideo" style="color:blue;">选择或拍摄视频</text>
     </view>
+  <view class="add-video" bindtap="addVideo" style="color:#1094CF"> 选择或拍摄视频  </view>
+   <view class="add-video" bindtap="addVideo"> 选择或拍摄视频  </view>
+  -->  
+  <view class="add-video">
+    <text bindtap="addVideo" style="color:#1094CF;">选择或拍摄视频</text>
+  </view>
 
-
+  <form bindsubmit="formSubmit">    
+    <view class="video-box" wx:if="{{video}}">
+      <video class="video" src="{{video}}"></video>
+      <view style="text-align:center;color:green;font-size:14px;padding-top:7px;">当前视频大小为{{size}}M</view>
+    </view>
 
     <view class="weui-cells">
       <view class="weui-cell">
         <view class="weui-cell__bd">
           <view class="weui-uploader">
             <view class="weui-uploader__hd">
-              <view class="weui-uploader__title">点击可预览选好的图片</view>
+              <view class="weui-uploader__title" style="font-size: 26rpx;">点击视频选择封面图片</view>
               <view class="weui-uploader__info"></view>
             </view>
             <view class="weui-uploader__bd">
@@ -67,19 +76,17 @@
         </view>
       </view>
     </view>
-    <view class="video-box" wx:if="{{video}}">
-      <video class="video" src="{{video}}"></video>
-      <view style="text-align:center;color:green;font-size:14px;padding-top:7px;">当前视频大小为{{size}}M</view>
-    </view>
-
     <view class="select-album">
+      <view class="addtitle" style="color:#BF1932;">请上传合适的视频，不然有可能被管理员删除哦</view>
+      <!-- 
       <view class="addtitle" style="color:red;">请选择一张图片作为视频封面(可以不传)</view>
-      <!-- <picker bindchange="bindPickerChange" value="{{albumIndex}}" range="{{albums}}" range-key="name">
+      <picker bindchange="bindPickerChange" value="{{albumIndex}}" range="{{albums}}" range-key="name">
                 <view class="picker">
                     当前选择：{{albums[albumIndex].name}}
                 </view>
             </picker> -->
     </view>
+  
     <view class="btn-box">
       <button type='primary' formType="submit" size="default">提交</button>
     </view>

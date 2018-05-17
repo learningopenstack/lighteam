@@ -1,6 +1,6 @@
 page {
     overflow-y: auto;
-    background-color: #fff;
+    background-color: #F0F8FF;
     overflow-x: hidden;
 }
 
@@ -26,12 +26,14 @@ page {
     flex-direction: column;
     width: 320rpx;
     font-size: 28rpx;
-    color: #c7c7c7;
+    background-color: #F0F8FF;
+    /*color: #c7c7c7;*/
 }
 
 .list-content-one {
-    font-weight: bold;
-    color: #000;
+    /*font-weight: bold;*/
+    background-color: #F0F8FF;
+    color:black;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -40,6 +42,7 @@ page {
 .list-content-txt-two {
     display: flex;
     flex-direction: row;
+    color: black;
     justify-content: space-between;
 }
 
@@ -54,4 +57,18 @@ page {
     width: 95%;
     margin: 0 auto;
     font-size: 28rpx;
+}
+
+.box2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 10rpx;
+    margin-bottom: 20rpx;
+    /*border: 1rpx red solid;*/
+}
+
+.img-div2 {
+    position: relative;
+    margin-left: 20rpx;
 }
