@@ -27,62 +27,75 @@
         <text bindtap="addzan" style="margin-left: 10rpx;margin-right: 30rpx;">{{vzan}}</text>
         <image wx:if="{{admin}}" bindtap='del' class="see" style="margin-right: 30rpx;" src="/image/del.png" />
       </view>
-  </view>
-
-</view>
-<view class="wrap">
-  <view class="comment">
-    <view class="txts">
-      <textarea maxlength="50" bindinput="onblur" value='{{content}}' placeholder="我也来说几句..." placeholder-style="color:#ccc;" />
-      <view style="height:40rpx;text-align:right;font-size:32rpx;">({{valLen}}/50)</view>
     </view>
-    <view class="imgs">
-      <view class="left" wx:for="{{imgs}}">
-        <image class="img" bindload="imageLoad" mode="aspectFill" src="{{item}}">
-          <image class="delete" src="/image/close.png" bindtap="delete" data-index="{{index}}"></image>
-        </image>
-      </view>
-      <view wx:if="{{imgs.length<5}}" class="left" id="one_box">
-        <image bindtap="chooseImage" class="add" src="/image/add_pic.png"></image>
-      </view>
-    </view>
-  </view>
-  <view class="publish right">
-    <button bindtap="bindPublish" class="btn" disabled="{{disabled}}" id="{{vid}}">发布</button>
-  </view>
-</view>
 
-<view wx:if="{{allcomment == 0}}" style="height:28rpx; font-size:24rpx;margin-top:12rpx; margin-left:200rpx;">
-  暂无评论，速来坐沙发 ~
-</view>
-<view wx:else>
+  </view>
   <view class="wrap">
-    <view class="talking">
-      <view class="item-list" wx:for="{{Info}}">
-        <view class="list-content">
-          <image class="list-content-img" mode="aspectFill" lazy-load='true' src="{{item.Imgurl}}" />
-          <view class="list-content-txt">
-            <view class="list-content-txt-one">
-              {{item.Nickname}}
+    <view class="comment">
+      <view class="txts">
+        <textarea maxlength="50" bindinput="onblur" value='{{content}}' placeholder="我也来说几句..." placeholder-style="color:#ccc;" />
+        <view style="height:40rpx;text-align:right;font-size:32rpx;">({{valLen}}/50)</view>
+      </view>
+      <view class="imgs">
+        <view class="left" wx:for="{{imgs}}">
+          <image class="img" bindload="imageLoad" mode="aspectFill" src="{{item}}">
+            <image class="delete" src="/image/close.png" bindtap="delete" data-index="{{index}}"></image>
+          </image>
+        </view>
+        <view wx:if="{{imgs.length<5}}" class="left" id="one_box">
+          <image bindtap="chooseImage" class="add" src="/image/add_pic.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="publish right">
+      <button bindtap="bindPublish" class="btn" disabled="{{disabled}}" id="{{vid}}">发布</button>
+    </view>
+  </view>
+
+  <view wx:if="{{allcomment == 0}}" style="height:28rpx; font-size:24rpx;margin-top:12rpx; margin-left:200rpx;">
+    暂无评论，速来坐沙发 ~
+  </view>
+  <view wx:else>
+    <view class="wrap">
+      <view class="talking">
+        <view class="item-list" wx:for="{{Info}}">
+          <view class="list-content">
+            <image class="list-content-img" mode="aspectFill" lazy-load='true' src="{{item.Imgurl}}" />
+            <view class="list-content-txt">
+              <view class="list-content-txt-one">
+                {{item.Nickname}}
+              </view>
             </view>
           </view>
-        </view>
-        <view class="list-content-yuyan">
-          {{item.Comment}}
-        </view>
-        <view class="imgs">
-          <view class="left">
-            <image class="img" wx:for="{{item.Pic}}" wx:for-item="item2" src="{{item2}}" data-index="{{index}}" data-images="{{item.Pic}}" bindtap="previewImage">
-            </image>
+          <view class="list-content-yuyan">
+            {{item.Comment}}
+          </view>
+          <view class="imgs">
+            <view class="left">
+              <image class="img" wx:for="{{item.Pic}}" wx:for-item="item2" src="https//cephcp.ztgame.com.cn/lighteam/upload/pic{{item2}}" data-index="{{index}}" data-images="{{item.Pic}}" bindtap="previewImage">
+              </image>
+            </view>
+          </view>
+          <view class="line-heng">
           </view>
         </view>
-        <view class="line-heng">
-        </view>
       </view>
-    </view>
-    <!-- <view wx:if='{{loadPage}}' class='load-more'>正在加载...</view>
+      <!-- <view wx:if='{{loadPage}}' class='load-more'>正在加载...</view>
         <view wx:if='{{!loadPage&&!loadOver}}' class='load-more'>上拉加载更多</view>
         <view wx:if='{{loadOver}}' class='load-more'>没有更多评论了！</view> -->
+    </view>
+
+    <view wx:if="{{allcomment > 3}}" class="more-txt">
+      <!--
+        <view>
+          更多>>
+        </view>
+      -->
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view>
+          下一页>>
+        </view>
+      </picker>
+    </view>
   </view>
-</view>
 </view>

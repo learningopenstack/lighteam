@@ -7,6 +7,7 @@ Page({
         valLen: 0,
         admin: false,
         testImgs: [],
+        array: [],
     },
     onLoad: function(options) {
         // 生命周期函数--监听页面加载
@@ -14,7 +15,8 @@ Page({
         var that = this
         //console.log(app.globalData)
         console.log("globalData:", app.globalData)
-        if(app.globalData.login.Role==1){
+
+        if(app.globalData.exit==false && app.globalData.login.Role==1){
           that.setData({
             admin: true
           })
@@ -40,7 +42,11 @@ Page({
 
         //获取用户视频评论
         var url = app.config.getVideoComment;
-        var params = { userid: app.globalData.login.Userid, start: 1, count: 3, videoid: options.id};
+        var userid=0;
+        if (app.globalData.exit==false){
+          userid = app.globalData.login.Userid;
+        }
+        var params = { userid: userid, start: 0, count: 3, videoid: options.id};
         app.wxRequest.getRequest(url, params).
           then(res => {
             console.log('视频播放页面获取评论列表', res);
@@ -54,23 +60,24 @@ Page({
             }
             console.log("commentimgs:", commentImgs)
             */
+            var all = new Array()
+              for (var i = 1; i < res.data.data.All / 3 + 1; i++) {
+                all.push(i)
+              }
             that.setData({
               allcomment: res.data.data.All,
-              Info: res.data.data.Info
+              array: all,
+              Info: res.data.data.Info,
             })
             
             var comments = new Array()
             comments =  that.data.Info
             for (var i=0; i<that.data.Info.length; i++){
-              console.log("Pic:", comments[i].Pic)
-              for(var j=0; j<that.data.Info[i].Pic.length; j++){
-                console.log("pic: ", that.data.Info[i].Pic[j], "j=", j)
-                /*
-                if(j==0){
-                  comments[i].Pic.splice(0, comments[i].Pic.length) 
-                }*/
-                
-                comments[i].Pic[j] = 'https://cephcp.ztgame.com.cn/lighteam/upload/pic/' + that.data.Info[i].Pic[j]
+              if (that.data.Info[i].Pic != null) {
+                for (var j = 0; j < that.data.Info[i].Pic.length; j++) {
+                  console.log("pic: ", that.data.Info[i].Pic[j], "j=", j)
+                  comments[i].Pic[j] = 'https://cephcp.ztgame.com.cn/lighteam/upload/pic/' + that.data.Info[i].Pic[j]
+                }
               }
             }
             console.log("comments: ", comments)
@@ -86,6 +93,67 @@ Page({
             console.log('finally~')
             wx.hideLoading();
           })
+    },
+
+    bindPickerChange:function(e){
+      var that = this
+      console.log("bindPickerChange:", e)
+      if (e.detail.value == 0) {
+        return
+      }
+
+      var page = Number(e.detail.value) + 1
+      var url = app.config.getVideoComment;
+      var userid = 0;
+      if (app.globalData.exit == false) {
+        userid = app.globalData.login.Userid;
+      }
+      var params = { userid: userid, start: 3 * (page - 1), count: 3, videoid: that.data.vid};
+      app.wxRequest.getRequest(url, params).
+        then(res => {
+          console.log('视频播放页面获取评论列表', res);
+          /*
+          var commentImgs = new Array()
+          commentImgs = res.data.data.Info.Pic
+          console.log("commentimgs:", commentImgs)
+          for (var i=0; i<res.data.data.Info.Pic.length; i++){
+            console.log("pic: ", res.data.data.Info.Pic[i] )
+            commentImgs.push('https://cephcp.ztgame.com.cn/lighteam/upload/pic/' + res.data.data.Info.Pic[i])
+          }
+          console.log("commentimgs:", commentImgs)
+          */
+          that.setData({
+            Info: res.data.data.Info,
+          })
+
+          var comments = new Array()
+          comments = that.data.Info
+          for (var i = 0; i < that.data.Info.length; i++) {
+            if (that.data.Info[i].Pic != null){
+              for (var j = 0; j < that.data.Info[i].Pic.length; j++) {
+                console.log("pic: ", that.data.Info[i].Pic[j], "j=", j)
+                /*
+                if(j==0){
+                  comments[i].Pic.splice(0, comments[i].Pic.length) 
+                }*/
+
+                comments[i].Pic[j] = 'https://cephcp.ztgame.com.cn/lighteam/upload/pic/' + that.data.Info[i].Pic[j]
+              }
+            }
+          }
+          console.log("comments: ", comments)
+          that.setData({
+            Info: comments
+          })
+          console.log("Info: ", that.data.Info)
+        })
+        .catch(res => {
+          console.log('错误信息', res)
+        })
+        .finally(function (res) {
+          console.log('finally~')
+          wx.hideLoading();
+        })
     },
 
     addzan:function(e){
@@ -116,8 +184,8 @@ Page({
       wx.request({
         url: app.config.addzan,
         data: {
-          userid: app.globalData.login.Userid,
-          key: app.globalData.login.Key,
+          //userid: app.globalData.login.Userid,
+          //key: app.globalData.login.Key,
           vid: that.data.vid,
           zan: that.data.vzan,
         },
@@ -289,6 +357,20 @@ Page({
     bindPublish: function(e) {
         console.log(e)
         var that = this;
+        if(app.globalData.exit==true){
+          wx.showModal({
+            title: '友情提醒',
+            content: '暂未获取您的授权，无法进行评论。请在[我的]进行授权',
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          });
+          return
+        }
         var url = app.config.postComment;
         console.log(app.config)
         var params = { userid: app.globalData.login.Userid, key: app.globalData.login.Key, videoid: e.currentTarget.id, comment: that.data.content};

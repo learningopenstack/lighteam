@@ -148,7 +148,7 @@ Page({
     tryhottopic: function() {
         var that = this;
         that.setData({
-            change: no,
+            //change: no,
             hottopicLoading: true,
             hottopicdisabled: true
         })
@@ -248,6 +248,11 @@ Page({
     },
     onLoad: function(options) {
         // 生命周期函数--监听页面加载
+        if(app.globalData.exit == true){
+          wx.navigateBack({
+            delta: 0
+          })
+        } 
         this.getindex();
         this.hotvideo();
         this.hottopic();

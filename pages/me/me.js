@@ -1,10 +1,13 @@
 //获取应用实例
+import config from '../../utils/config';
+var wxApi = require('../../utils/wxApi');
+var wxRequest = require('../../utils/wxRequest')
 var app = getApp()
 Page({
     data: {
         userInfo: {},
         word: '',
-        role: 0,
+        role: -1,
         ActionList: [{
             id: 1,
             name: 'notice',
@@ -71,6 +74,23 @@ Page({
     },
     onShow: function() {
         // 生命周期函数--监听页面显示
+      if (app.globalData.exit == true) {
+        wx.showModal({
+          title: '友情提醒',
+          content: '暂未获取您的授权，为提升您的交互体验，请在[我的]进行授权',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              app.globalData.exit = true
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+              app.globalData.exit = true
+            }
+          }
+        });
+        return
+      }
+      console.log("globalData exit:", app.globalData.exit)
         this.setData({
             userInfo: app.globalData.userInfo,
             role: app.globalData.login.Role,
@@ -95,20 +115,104 @@ Page({
         // 页面上拉触底事件的处理函数
 
     },
+    onGotUserInfo: function (e) {
+      app.globalData.userInfo = e.detail.userInfo
+      var url = config.getLoginUrl;
+      var params = {
+        code: app.globalData.code,
+        imgurl: e.detail.userInfo.avatarUrl,
+        nickname: e.detail.userInfo.nickName
+      }
+      wxRequest.postRequest(url, params).
+      then(res => {
+          //3.获取word
+          app.globalData.login = res.data.data
+          app.globalData.exit = false
+          wx.reLaunch({
+            url: '/pages/me/me',
+          })
+        })
+        .catch(res => {
+          console.log(res)
+
+        })
+        .finally(function (res) {
+          console.log('finally~')
+        })
+      console.log(e.detail.errMsg)
+      console.log(e.detail.userInfo)
+      console.log(e.detail.rawData)
+    },
 
     action: function(event){
       console.log(event)
       console.log("id = ", event.currentTarget.dataset.id)
       
       if (event.currentTarget.dataset.id==3){
+        if (app.globalData.exit == true) {
+          wx.showModal({
+            title: '友情提醒',
+            content: '暂未获取您的授权，无法上传视频，请在进行授权',
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          });
+          return
+        }
         this.myvideo()
       }else if(event.currentTarget.dataset.id==4){
+        if (app.globalData.exit == true) {
+          wx.showModal({
+            title: '友情提醒',
+            content: '暂未获取您的授权，无法上传视频，请在进行授权',
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          });
+          return
+        }
         this.uploadvideo()
       }else if(event.currentTarget.dataset.id==1){
         this.notice()
       }else if(event.currentTarget.dataset.id==2){
+        if (app.globalData.exit == true) {
+          wx.showModal({
+            title: '友情提醒',
+            content: '暂未获取您的授权，无法上传视频，请在进行授权',
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          });
+          return
+        }
         this.score()
       } else if (event.currentTarget.dataset.id == 5) {
+        if (app.globalData.exit == true) {
+          wx.showModal({
+            title: '友情提醒',
+            content: '暂未获取您的授权，无法上传视频，请在进行授权',
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          });
+          return
+        }
         console.log('zuji')
         this.zuji()
       } else if (event.currentTarget.dataset.id == 6) {

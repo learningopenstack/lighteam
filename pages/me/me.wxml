@@ -6,9 +6,16 @@
     </view>
     <view class="login-user">
       <text class="username">{{userInfo.nickName}}</text>
-      <view>
-        <input class="usertext" style="display:block" bindinput="bindKeyInput" value="{{word}}" /> </view>
-      <!-- <text class="usertext" style="display:block" >{{word}}</text> -->
+      <view wx:if="{{role==-1}}">
+        <button style="background: none; border:0,0,0,0;"  open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">请点击登录</button>
+      </view>
+      <view wx:else>
+        <input class="usertext" style="display:block" bindinput="bindKeyInput" value="{{word}}" /> 
+      </view>
+      <!-- 
+      <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+      <text class="usertext" style="display:block" >{{word}}</text> 
+      -->
 
     </view>
   </view>

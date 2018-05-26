@@ -180,6 +180,23 @@ Page({
           info: Info
         })
       }
+
+      if (app.globalData.exit == true) {
+        wx.showModal({
+          title: '友情提醒',
+          content: '暂未获取您的授权，为提升您的交互体验，请在[我的]进行授权',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              app.globalData.exit = true
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+              app.globalData.exit = true
+            }
+          }
+        });
+        return
+      }
       wx.request({
         url: app.config.addzan,
         data: {
@@ -220,7 +237,7 @@ Page({
       var topicid = that.data.navbar[order].Id
       var topicname = that.data.navbar[order].Name
 
-      console.log("topicid;", topicid)
+      console.log("topicname;", topicname)
       //发送请求获取视频信息：
       wx.request({
         url: app.config.getClassesVideo,
@@ -261,6 +278,20 @@ Page({
     },
 
     addvideo: function() {
+      if (app.globalData.exit == true) {
+        wx.showModal({
+          title: '友情提醒',
+          content: '暂未获取您的授权，无法上传视频，请在[我的]进行授权',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        });
+        return
+      }
         wx.navigateTo({
             url: '../add/add',
             success: function(res) {
@@ -384,7 +415,7 @@ Page({
       that.setData({
         flags: flags
       })
-      console.log("topicid;", topicid)
+      console.log("topname;", topicname)
       var infos = new Array()
       //发送请求获取视频信息：
       wx.request({
@@ -409,6 +440,7 @@ Page({
             }
 
             this.setData({
+              currenttopic:topicname,
               info: res.data.data.Base,
               array: all,
               total: res.data.data.All,

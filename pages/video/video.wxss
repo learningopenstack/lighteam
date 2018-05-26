@@ -20,6 +20,18 @@ page {
   flex-direction: row;
 }
 
+.more-txt {
+    display: flex;
+    flex-direction: row;
+    color: #b6b6b6;
+    font-size: 30rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-bottom: 20rpx;
+}
+
 .pic{
   height: 100%;
   width: 30%;

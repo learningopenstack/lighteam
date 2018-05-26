@@ -11,6 +11,8 @@ App({
     globalData: { //全局数据
         userInfo: null,
         login: null,
+        code: null,
+        exit: false,
         myvideos: null,
         mysearchvideos: null,
         zanmap: new Map(),
@@ -25,7 +27,7 @@ App({
     /**
      * 用户登录
      */
-
+    /*
     login: function(fn) {
         var that = this;
         var code;
@@ -39,8 +41,9 @@ App({
         }).
         then(res => {
                 //2.获取用户信息
-                var wxGetUserInfo = wxApi.wxGetUserInfo()
-                return wxGetUserInfo()
+                console.log("=========")
+                //var wxGetUserInfo = wxApi.wxGetUserInfo()
+                //return wxGetUserInfo()
 
             })
             .then(res => {
@@ -67,7 +70,75 @@ App({
             .finally(function(res) {
                 console.log('finally~')
             })
+    },*/
+
+    
+    login: function(fn){
+      var that = this;
+      var code;
+      var wxLogin = wxApi.wxLogin()
+      wxLogin().then(res => {
+        //1.获取code
+        that.globalData.code = res.code
+      }).
+      then(res => {
+        //判断是否授权
+        wx.getSetting({ 
+          success: res=> {
+            if (res.authSetting['scope.userInfo']) {
+              console.log('已经授权')
+              // 已经授权，可以直接调用 getUserInfo 
+                wx.getUserInfo({
+                  success: res=>{
+                    console.log("get UserInfo success")
+                    that.globalData.userInfo = res.userInfo;
+                    console.log("userinfo:", that.globalData.userInfo )
+                    var url = config.getLoginUrl;
+                    var params = {
+                      code: code,
+                      imgurl: res.userInfo.avatarUrl,
+                      nickname: res.userInfo.nickName
+                    }
+                wxRequest.postRequest(url, params).
+                then(res=> {
+                //3.获取word
+                  that.globalData.login = res.data.data
+                })
+                .catch(res => {
+                  console.log('错误信息', res)
+                  return false;
+                })
+                .finally(function (res) {
+                  console.log('finally~')
+                })
+              }
+            }) 
+            } else {
+              that.globalData.exit = true;
+              //没有授权
+              /*
+              wx.showModal({
+                title: '友情提醒',
+                content: '暂未获取您的授权，为提升您的交互体验，请稍后再次进入并授权',
+                success: function (res) {
+                  if (res.confirm) {
+                    console.log('用户点击确定')
+                    that.globalData.exit = true
+                    wx.navigateBack({
+                      delta: 0
+                    })
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                    that.globalData.exit=true
+                  }
+                }
+              });*/
+            }
+          }
+        })
+      })
     },
+
     upLoadImg(imgUrl, success, fail, uploadtask) {
         var that = this;
         var session_id = wx.getStorageSync('PHPSESSID');
